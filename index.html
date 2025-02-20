@@ -5,22 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>James Drew Cassidy | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
+
     <header>
-        <h1>James Drew Cassidy</h1>
-        <p>Web Developer | Software Engineer | Tech Enthusiast</p>
+        <div class="container">
+            <h1>James Drew Cassidy</h1>
+            <p>Web Developer | Software Engineer | Tech Enthusiast</p>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <section>
-        <h2>Projects</h2>
-        <p>Check out some of my projects below:</p>
-        <ul>
-            <li><a href="#">Project 1</a></li>
-            <li><a href="#">Project 2</a></li>
-        </ul>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I'm a passionate web developer with experience in front-end and back-end technologies. I love building modern, responsive, and user-friendly websites.</p>
+        </div>
     </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="project-grid">
+                <div class="project">
+                    <img src="assets/project1.jpg" alt="Project 1">
+                    <h3>Project 1</h3>
+                    <p>A description of the first project.</p>
+                </div>
+                <div class="project">
+                    <img src="assets/project2.jpg" alt="Project 2">
+                    <h3>Project 2</h3>
+                    <p>A description of the second project.</p>
+                </div>
+                <div class="project">
+                    <img src="assets/project3.jpg" alt="Project 3">
+                    <h3>Project 3</h3>
+                    <p>A description of the third project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <p>Interested in working together? Get in touch!</p>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
     <footer>
-        <p>© 2025 James Drew Cassidy | <a href="https://github.com/JamesDrewCassidy">GitHub</a></p>
+        <div class="container">
+            <p>© 2025 James Drew Cassidy | <a href="https://github.com/JamesDrewCassidy">GitHub</a></p>
+        </div>
     </footer>
+
 </body>
 </html>
