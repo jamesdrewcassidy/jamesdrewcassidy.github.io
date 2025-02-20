@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Redirect from repository (or non‑GitHub Pages) to live portfolio -->
+  <script>
+    // If not on your GitHub Pages domain, redirect to the portfolio site.
+    if (!window.location.hostname.includes("github.io")) {
+      window.location.href = "https://jamesdrewcassidy.github.io";
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>James Drew Cassidy | Portfolio</title>
   <!-- Google Fonts -->
@@ -10,47 +17,59 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <header>
+  <header class="hero">
     <div class="container">
       <h1 class="fade-in">James Drew Cassidy</h1>
-      <p class="fade-in-delay">Web Developer | Software Engineer | Tech Enthusiast</p>
+      <!-- Tagline will be animated via JavaScript typewriter effect -->
+      <p class="tagline fade-in-delay"></p>
       <nav>
         <ul>
           <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#tutorials">Tutorials</a></li>
           <li><a href="#security">Security</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <!-- Call-to-Action Button -->
+      <a href="#contact" class="cta-button fade-in-delay">Hire Me</a>
     </div>
   </header>
 
   <section id="about">
-    <div class="container">
+    <div class="container fade-in-element">
       <h2>About Me</h2>
-      <p>I’m a passionate web developer with experience in both front-end and back-end technologies. I love creating modern, responsive, and user-friendly websites.</p>
+      <p>I’m a self‑taught, passionate web developer and IT enthusiast with a proven track record of building modern, responsive, and user‑friendly websites. I thrive on solving problems and continuously expanding my technical expertise.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container fade-in-element">
+      <h2>Skills</h2>
+      <p>HTML, CSS, JavaScript, React, Node.js, Python, Cybersecurity, and more.</p>
+      <p>My hands‑on approach and insatiable curiosity have enabled me to master complex technologies—without the need for formal education.</p>
     </div>
   </section>
 
   <section id="projects">
-    <div class="container">
+    <div class="container fade-in-element">
       <h2>My Projects</h2>
       <div class="project-grid">
         <div class="project">
           <img src="assets/project1.jpg" alt="Project 1">
           <h3>Project 1</h3>
-          <p>A description of the first project.</p>
+          <p>A description of the first project showcasing innovative tech solutions.</p>
         </div>
         <div class="project">
           <img src="assets/project2.jpg" alt="Project 2">
           <h3>Project 2</h3>
-          <p>A description of the second project.</p>
+          <p>A description of the second project demonstrating cutting‑edge design.</p>
         </div>
         <div class="project">
           <img src="assets/project3.jpg" alt="Project 3">
           <h3>Project 3</h3>
-          <p>A description of the third project.</p>
+          <p>A description of the third project highlighting advanced security measures.</p>
         </div>
       </div>
     </div>
@@ -58,7 +77,7 @@
 
   <!-- Tutorials Section Placeholder -->
   <section id="tutorials">
-    <div class="container">
+    <div class="container fade-in-element">
       <h2>Tutorials</h2>
       <p>Coming soon... Stay tuned for my coding tutorials and scripts!</p>
     </div>
@@ -66,16 +85,16 @@
 
   <!-- Security Section Placeholder -->
   <section id="security">
-    <div class="container">
+    <div class="container fade-in-element">
       <h2>Security Accomplishments</h2>
-      <p>Coming soon... Check back for details on my latest security projects.</p>
+      <p>Coming soon... Check back for details on my latest security projects and contributions.</p>
     </div>
   </section>
 
   <section id="contact">
-    <div class="container">
+    <div class="container fade-in-element">
       <h2>Contact Me</h2>
-      <p>Interested in working together? Get in touch!</p>
+      <p>If you’re interested in working with a driven, self‑taught tech specialist who gets results, let’s connect.</p>
       <form>
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
