@@ -1,99 +1,168 @@
 document.addEventListener("DOMContentLoaded", () => {
-    /* Smooth Scroll for Navigation Links */
-    const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
+    // Smooth Scroll for Navigation Links (passive listeners)
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
         e.preventDefault();
-        const targetID = this.getAttribute("href").substring(1);
-        const targetSection = document.getElementById(targetID);
-        targetSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      });
+        const target = document.getElementById(link.getAttribute('href').substring(1));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }, { passive: true });
     });
-  
-    /* Typewriter Effect for Header Tagline */
-    // Add a <p class="tagline"></p> in your header where you want the rotating text.
-    const tagline = document.querySelector('.tagline');
-    if(tagline) {
-      const phrases = ["Web Developer", "Software Engineer", "Tech Enthusiast"];
-      let phraseIndex = 0;
-      let letterIndex = 0;
-      let currentPhrase = '';
-      let isDeleting = false;
-      const typeSpeed = 150;
-      const deleteSpeed = 100;
-      const pauseTime = 2000;
-      
-      function type() {
-        if (!isDeleting && letterIndex <= phrases[phraseIndex].length) {
-          currentPhrase = phrases[phraseIndex].substring(0, letterIndex++);
-          tagline.textContent = currentPhrase;
-          setTimeout(type, typeSpeed);
-        } else if (isDeleting && letterIndex >= 0) {
-          currentPhrase = phrases[phraseIndex].substring(0, letterIndex--);
-          tagline.textContent = currentPhrase;
-          setTimeout(type, deleteSpeed);
-        }
-        
-        if (!isDeleting && letterIndex === phrases[phraseIndex].length + 1) {
-          isDeleting = true;
-          setTimeout(type, pauseTime);
-        }
-        
-        if (isDeleting && letterIndex === -1) {
-          isDeleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-          letterIndex = 0;
-          setTimeout(type, typeSpeed);
-        }
-      }
-      type();
-    }
-  
-    /* Active Navigation Highlighting */
-    const sections = document.querySelectorAll("section");
-    const observerOptions = {
-      threshold: 0.5
-    };
-  
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          navLinks.forEach(link => {
-            link.classList.remove("active");
-            if(link.getAttribute("href").substring(1) === entry.target.id) {
-              link.classList.add("active");
-            }
-          });
-        }
-      });
-    }, observerOptions);
-  
-    sections.forEach(section => {
-      sectionObserver.observe(section);
+    
+    // Back to Top Button functionality
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  
-    /* Scroll-Triggered Fade-In Animations */
-    // Add the class "fade-in-element" to any element you want to reveal on scroll.
-    const faders = document.querySelectorAll('.fade-in-element');
-    const appearOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px"
-    };
-  
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    
+    // Intersection Observer for Section Fade-In Effects
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          entry.target.classList.add('appear');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
-    }, appearOptions);
-  
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+    
+    // GSAP Animations on Load
+    if (window.gsap) {
+      gsap.from(".nav-links li", { opacity: 0, y: -20, stagger: 0.1, duration: 0.6 });
+      gsap.from(".hero-content", { opacity: 0, y: 50, duration: 1, delay: 0.5 });
+    }
+    
+    // Optimized Custom Cursor (using requestAnimationFrame)
+    const customCursor = document.getElementById('customCursor');
+    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    }, { passive: true });
+    function updateCursor() {
+      customCursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+    
+    // 3D Tilt Effect on Project Cards
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = e.clientX - centerX;
+        const deltaY = e.clientY - centerY;
+        const rotateX = (deltaY / (rect.height / 2)) * 10;
+        const rotateY = (-deltaX / (rect.width / 2)) * 10;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+      });
     });
+    
+    // Hero Parallax Effect (subtle)
+    const heroContent = document.querySelector('.hero-content');
+    window.addEventListener('scroll', () => {
+      const offset = window.scrollY * 0.2;
+      heroContent.style.transform = `translateY(${offset}px)`;
+    }, { passive: true });
+    
+    // Particle Effect in Hero Section
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    // Optimize particle count based on screen width
+    const particleCount = window.innerWidth < 600 ? 50 : 100;
+    const maxVelocity = 0.5;
+    function resizeCanvas() {
+      const hero = document.querySelector('.hero');
+      canvas.width = hero.clientWidth;
+      canvas.height = hero.clientHeight;
+    }
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    resizeCanvas();
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.radius = Math.random() * 2 + 1;
+        this.vx = (Math.random() - 0.5) * maxVelocity;
+        this.vy = (Math.random() - 0.5) * maxVelocity;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+        ctx.fill();
+      }
+    }
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animateParticles);
+    }
+    initParticles();
+    animateParticles();
+    
+    // Chatbot Widget Functionality
+    const chatbotWidget = document.getElementById('chatbot-widget');
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotPrompts = document.querySelectorAll('.chatbot-prompt');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    
+    // Prewritten responses for prompts
+    const responses = {
+      projects: "I've built innovative web apps, responsive designs, and robust security solutions. Check out the 'Work' section to see more!",
+      achievements: "I've earned recognition in cybersecurity and web development, highlighting my commitment to excellence.",
+      resume: "Curious about my experience? Download my resume here: <a href='resume.pdf' target='_blank'>Resume</a>.",
+      ai: "I integrate AI into my workflows to boost creativity and efficiency. Always exploring new innovative techniques!"
+    };
+    
+    // Toggle chatbot widget open/close
+    chatbotToggle.addEventListener('click', () => {
+      chatbotWidget.classList.toggle('chatbot-collapsed');
+      chatbotToggle.innerHTML = chatbotWidget.classList.contains('chatbot-collapsed') ? "&#x25B2;" : "&#x25BC;";
+    });
+    
+    // Handle prompt button clicks
+    chatbotPrompts.forEach(button => {
+      button.addEventListener('click', () => {
+        const key = button.getAttribute('data-prompt');
+        const reply = responses[key];
+        if (reply) {
+          appendMessage("User", button.textContent);
+          setTimeout(() => {
+            appendMessage("AI", reply);
+          }, 500);
+        }
+      });
+    });
+    
+    function appendMessage(sender, text) {
+      const msg = document.createElement('div');
+      msg.classList.add('chatbot-message', sender.toLowerCase());
+      msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
+      chatbotMessages.appendChild(msg);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
   });
   

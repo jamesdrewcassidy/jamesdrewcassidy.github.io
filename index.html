@@ -2,112 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Redirect from repository (or non‑GitHub Pages) to live portfolio -->
-  <script>
-    // If not on your GitHub Pages domain, redirect to the portfolio site.
-    if (!window.location.hostname.includes("github.io")) {
-      window.location.href = "https://jamesdrewcassidy.github.io";
-    }
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Responsive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- SEO & Description -->
+  <meta name="description" content="James Drew Cassidy – A self-taught IT specialist, cybersecurity enthusiast, and modern web developer.">
   <title>James Drew Cassidy | Portfolio</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <!-- Preload critical assets -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for optional icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        integrity="sha512-papNMZ/fzQk6QZ4zC3zY9z/Nv0e5nSK+40hJYVjv1cygYhR0Y1QjIvRGe3Ev5+0F1VbX82Jod7JrJzpajM6l5w==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- GSAP for advanced animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
-  <header class="hero">
-    <div class="container">
-      <h1 class="fade-in">James Drew Cassidy</h1>
-      <!-- Tagline will be animated via JavaScript typewriter effect -->
-      <p class="tagline fade-in-delay"></p>
-      <nav>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#tutorials">Tutorials</a></li>
-          <li><a href="#security">Security</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <!-- Call-to-Action Button -->
-      <a href="#contact" class="cta-button fade-in-delay">Hire Me</a>
+  <!-- Skip Navigation for Accessibility -->
+  <a href="#mainContent" class="skip-nav">Skip to content</a>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('Service Worker registered with scope:', reg.scope))
+          .catch(err => console.error('Service Worker registration failed:', err));
+      });
+    }
+  </script>
+  
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="logo">James Drew Cassidy</div>
+      <ul class="nav-links">
+        <li><a href="#start">Start</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#lab">Lab</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Hero Section with Particle Canvas and Parallax -->
+  <header id="start" class="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="container hero-content">
+      <h1 class="hero-title">Hi, my name is <span class="gradient-text">James Drew Cassidy</span></h1>
+      <p class="tagline">I design, develop, and secure modern digital experiences.</p>
+      <a href="#work" class="hero-btn">Let me show you &rarr;</a>
     </div>
   </header>
-
-  <section id="about">
-    <div class="container fade-in-element">
-      <h2>About Me</h2>
-      <p>I’m a self‑taught, passionate web developer and IT enthusiast with a proven track record of building modern, responsive, and user‑friendly websites. I thrive on solving problems and continuously expanding my technical expertise.</p>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container fade-in-element">
-      <h2>Skills</h2>
-      <p>HTML, CSS, JavaScript, React, Node.js, Python, Cybersecurity, and more.</p>
-      <p>My hands‑on approach and insatiable curiosity have enabled me to master complex technologies—without the need for formal education.</p>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container fade-in-element">
-      <h2>My Projects</h2>
-      <div class="project-grid">
-        <div class="project">
-          <img src="assets/project1.jpg" alt="Project 1">
-          <h3>Project 1</h3>
-          <p>A description of the first project showcasing innovative tech solutions.</p>
-        </div>
-        <div class="project">
-          <img src="assets/project2.jpg" alt="Project 2">
-          <h3>Project 2</h3>
-          <p>A description of the second project demonstrating cutting‑edge design.</p>
-        </div>
-        <div class="project">
-          <img src="assets/project3.jpg" alt="Project 3">
-          <h3>Project 3</h3>
-          <p>A description of the third project highlighting advanced security measures.</p>
+  
+  <!-- Main Content -->
+  <main id="mainContent">
+    <!-- Work Section -->
+    <section id="work" class="section">
+      <div class="container">
+        <h2>Work</h2>
+        <div class="project-grid">
+          <div class="project-card">
+            <img src="assets/project1.jpg" alt="Innovative Web App" loading="lazy">
+            <h3>Innovative Web App</h3>
+            <p>A cutting‑edge application built with secure coding practices and modern frameworks for seamless user experiences.</p>
+          </div>
+          <div class="project-card">
+            <img src="assets/project2.jpg" alt="Responsive Design" loading="lazy">
+            <h3>Responsive Design</h3>
+            <p>A portfolio of fluid layouts and adaptive interfaces engineered for performance on every device.</p>
+          </div>
+          <div class="project-card">
+            <img src="assets/project3.jpg" alt="Security Solutions" loading="lazy">
+            <h3>Security Solutions</h3>
+            <p>Advanced projects focused on safeguarding web applications with robust security measures.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Tutorials Section Placeholder -->
-  <section id="tutorials">
-    <div class="container fade-in-element">
-      <h2>Tutorials</h2>
-      <p>Coming soon... Stay tuned for my coding tutorials and scripts!</p>
-    </div>
-  </section>
-
-  <!-- Security Section Placeholder -->
-  <section id="security">
-    <div class="container fade-in-element">
-      <h2>Security Accomplishments</h2>
-      <p>Coming soon... Check back for details on my latest security projects and contributions.</p>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container fade-in-element">
-      <h2>Contact Me</h2>
-      <p>If you’re interested in working with a driven, self‑taught tech specialist who gets results, let’s connect.</p>
-      <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
-
+    </section>
+    
+    <!-- Lab Section -->
+    <section id="lab" class="section">
+      <div class="container">
+        <h2>Lab</h2>
+        <p>Experimental projects, prototypes, and creative explorations that push boundaries.</p>
+      </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About</h2>
+        <p>
+          I’m a self‑taught IT specialist with a deep passion for cybersecurity, AI, and modern web development.
+          Continuously learning and innovating, I build secure, high‑performance digital solutions that make an impact.
+        </p>
+      </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>If you’re interested in collaborating or want to learn more, drop me a line at <a href="mailto:baszczok@yasio.dev">baszczok@yasio.dev</a>.</p>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
   <footer>
     <div class="container">
-      <p>© 2025 James Drew Cassidy | <a href="https://github.com/JamesDrewCassidy">GitHub</a></p>
+      <p>© 2025 James Drew Cassidy. All rights reserved.</p>
     </div>
   </footer>
+  
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Back to top">&uarr;</button>
+  
+  <!-- Chatbot Widget -->
+  <div id="chatbot-widget" class="chatbot-collapsed">
+    <div id="chatbot-header">
+      Chat with me
+      <span id="chatbot-toggle">&#x25B2;</span>
+    </div>
+    <div id="chatbot-body">
+      <div id="chatbot-messages"></div>
+      <div id="chatbot-prompts">
+        <button class="chatbot-prompt" data-prompt="projects">Projects</button>
+        <button class="chatbot-prompt" data-prompt="achievements">Achievements</button>
+        <button class="chatbot-prompt" data-prompt="resume">Resume</button>
+        <button class="chatbot-prompt" data-prompt="ai">AI Info</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
