@@ -1,3 +1,4 @@
+"use strict";
 const CACHE_NAME = 'portfolio-cache-v1';
 const urlsToCache = [
   '/',

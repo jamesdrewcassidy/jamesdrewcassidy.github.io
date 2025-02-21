@@ -2,26 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Responsive design -->
+  <!-- Responsive & Mobile Meta Tags -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- SEO & Description -->
-  <meta name="description" content="James Drew Cassidy – A self-taught IT specialist, cybersecurity enthusiast, and modern web developer.">
+  <meta name="theme-color" content="#000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- SEO, Description & Security -->
+  <meta name="description" content="James Drew Cassidy – A self-taught IT specialist, security enthusiast, and lifelong learner who thrives on exploring the newest technologies, hacking methodologies, and AI innovations.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com;">
   <title>James Drew Cassidy | Portfolio</title>
-  <!-- Preload critical assets -->
+  <!-- Preload & Preconnect -->
   <link rel="preload" href="style.css" as="style">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
-  <!-- Font Awesome for optional icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
         integrity="sha512-papNMZ/fzQk6QZ4zC3zY9z/Nv0e5nSK+40hJYVjv1cygYhR0Y1QjIvRGe3Ev5+0F1VbX82Jod7JrJzpajM6l5w==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- GSAP for advanced animations -->
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <!-- Main Script -->
   <script src="script.js" defer></script>
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json">
 </head>
-<body>
-  <!-- Skip Navigation for Accessibility -->
+<body role="document">
+  <!-- Skip Navigation -->
   <a href="#mainContent" class="skip-nav">Skip to content</a>
   
   <!-- Service Worker Registration -->
@@ -36,13 +42,13 @@
   </script>
   
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar" role="navigation">
     <div class="container nav-container">
       <div class="logo">James Drew Cassidy</div>
       <ul class="nav-links">
         <li><a href="#start">Start</a></li>
         <li><a href="#work">Work</a></li>
-        <li><a href="#lab">Lab</a></li>
+        <li><a href="#random">Random Projects</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -50,11 +56,11 @@
   </nav>
   
   <!-- Hero Section with Particle Canvas and Parallax -->
-  <header id="start" class="hero">
+  <header id="start" class="hero" role="banner">
     <canvas id="particleCanvas"></canvas>
     <div class="container hero-content">
       <h1 class="hero-title">Hi, my name is <span class="gradient-text">James Drew Cassidy</span></h1>
-      <p class="tagline">I design, develop, and secure modern digital experiences.</p>
+      <p class="tagline">I’m driven by an insatiable curiosity—constantly exploring the newest technologies, hacking techniques, and innovative AI methods. I love researching how hackers operate and how white hats defend, always pushing my limits and sharing my findings.</p>
       <a href="#work" class="hero-btn">Let me show you &rarr;</a>
     </div>
   </header>
@@ -62,9 +68,10 @@
   <!-- Main Content -->
   <main id="mainContent">
     <!-- Work Section -->
-    <section id="work" class="section">
+    <section id="work" class="section" role="region" aria-labelledby="work-heading">
       <div class="container">
-        <h2>Work</h2>
+        <h2 id="work-heading">Work</h2>
+        <p>Here you'll find a selection of my most impactful projects—where I merge modern web development with advanced security research and AI-driven innovations. (GitHub repos coming soon!)</p>
         <div class="project-grid">
           <div class="project-card">
             <img src="assets/project1.jpg" alt="Innovative Web App" loading="lazy">
@@ -85,36 +92,35 @@
       </div>
     </section>
     
-    <!-- Lab Section -->
-    <section id="lab" class="section">
+    <!-- Random Projects Section -->
+    <section id="random" class="section" role="region" aria-labelledby="random-heading">
       <div class="container">
-        <h2>Lab</h2>
-        <p>Experimental projects, prototypes, and creative explorations that push boundaries.</p>
+        <h2 id="random-heading">Random Projects</h2>
+        <p>This section features a curated collection of experimental and playful projects—where I explore unexpected tech hacks, test new security ideas, and experiment with AI-driven code generation. New GitHub projects and scripts will be added as they evolve.</p>
       </div>
     </section>
     
     <!-- About Section -->
-    <section id="about" class="section">
+    <section id="about" class="section" role="region" aria-labelledby="about-heading">
       <div class="container">
-        <h2>About</h2>
+        <h2 id="about-heading">About</h2>
         <p>
-          I’m a self‑taught IT specialist with a deep passion for cybersecurity, AI, and modern web development.
-          Continuously learning and innovating, I build secure, high‑performance digital solutions that make an impact.
+          I am a self‑taught IT specialist who thrives on learning the latest technologies—from innovative software and hardware to breakthrough AI and cybersecurity trends. I passionately research hacker techniques and white hat countermeasures, even if my hands‑on security experience is still growing. I also leverage AI by creating, refining, and stress‑testing prompts to build state‑of‑the‑art generative models. My portfolio is a living document of my journey, continuously updated with new GitHub projects, scripts, and experiments.
         </p>
       </div>
     </section>
     
     <!-- Contact Section -->
-    <section id="contact" class="section">
+    <section id="contact" class="section" role="region" aria-labelledby="contact-heading">
       <div class="container">
-        <h2>Contact</h2>
-        <p>If you’re interested in collaborating or want to learn more, drop me a line at <a href="mailto:baszczok@yasio.dev">baszczok@yasio.dev</a>.</p>
+        <h2 id="contact-heading">Contact</h2>
+        <p>If you’re interested in job offers, opportunities, or have any questions, please email me directly at <a href="mailto:nmh1337nmh@gmail.com">nmh1337nmh@gmail.com</a>.</p>
       </div>
     </section>
   </main>
   
   <!-- Footer -->
-  <footer>
+  <footer role="contentinfo">
     <div class="container">
       <p>© 2025 James Drew Cassidy. All rights reserved.</p>
     </div>
@@ -124,13 +130,13 @@
   <button id="backToTop" aria-label="Back to top">&uarr;</button>
   
   <!-- Chatbot Widget -->
-  <div id="chatbot-widget" class="chatbot-collapsed">
+  <div id="chatbot-widget" class="chatbot-collapsed" role="complementary" aria-label="Chatbot">
     <div id="chatbot-header">
       Chat with me
       <span id="chatbot-toggle">&#x25B2;</span>
     </div>
     <div id="chatbot-body">
-      <div id="chatbot-messages"></div>
+      <div id="chatbot-messages" aria-live="polite"></div>
       <div id="chatbot-prompts">
         <button class="chatbot-prompt" data-prompt="projects">Projects</button>
         <button class="chatbot-prompt" data-prompt="achievements">Achievements</button>
