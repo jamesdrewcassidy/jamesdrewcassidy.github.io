@@ -1,149 +1,753 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <!-- Responsive & Mobile Meta Tags -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#000">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <!-- SEO, Description & Security -->
-  <meta name="description" content="James Drew Cassidy – A self-taught IT specialist, security enthusiast, and lifelong learner who thrives on exploring the newest technologies, hacking methodologies, and AI innovations.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com;">
-  <title>James Drew Cassidy | Portfolio</title>
-  <!-- Preload & Preconnect -->
-  <link rel="preload" href="style.css" as="style">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-        integrity="sha512-papNMZ/fzQk6QZ4zC3zY9z/Nv0e5nSK+40hJYVjv1cygYhR0Y1QjIvRGe3Ev5+0F1VbX82Jod7JrJzpajM6l5w==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-  <!-- Main Script -->
-  <script src="script.js" defer></script>
-  <!-- Manifest for PWA -->
-  <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Drew Cassidy - Freelance Front-end Developer crafting unique, high-performance digital experiences.">
+    <title>Drew Cassidy - Creative Front-end Developer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Three.js for 3D animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Custom Styles & Tailwind Config -->
+    <style>
+        /*
+         * A complete redesign for a light, modern, and professional theme.
+         * The color palette is clean and high-contrast for readability.
+         * Animations are refined to be smoother and more impactful.
+         */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'white': '#FFFFFF',
+                        'background': '#F8F9FA',
+                        'primary': '#1A202C',
+                        'secondary': '#4A5568',
+                        'accent': '#3B82F6',
+                        'accent-hover': '#2563EB',
+                    },
+                    boxShadow: {
+                        'subtle': '0 4px 12px rgba(0, 0, 0, 0.05)',
+                        'medium': '0 8px 30px rgba(0, 0, 0, 0.1)',
+                        'glow': '0 0 20px rgba(59, 130, 246, 0.3)',
+                    },
+                    transitionTimingFunction: {
+                        'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+                    }
+                }
+            }
+        }
+
+        body {
+            background-color: #F8F9FA;
+        }
+
+        /* Card style for the light theme */
+        .light-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .light-card:not(.project-card):hover { /* Exclude project cards from this hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* General scroll animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered delays for children */
+        .stagger-reveal > * {
+            transition-delay: var(--stagger-delay, 0ms);
+        }
+
+        /* Section Title Mask Reveal Animation */
+        .title-reveal-container {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .section-title {
+            transform: translateY(110%);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .is-visible .section-title {
+            transform: translateY(0);
+        }
+        
+        /* Hero Canvas for 3D background */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        /* Experiential Showcase Scrolling */
+        #showcase-container {
+            position: relative;
+        }
+        .project-card-container {
+            height: 100vh; /* Each card container takes full viewport height */
+            position: sticky;
+            top: 0;
+            padding-top: 6rem; /* Space for nav */
+            padding-bottom: 6rem;
+        }
+        .project-card {
+            will-change: transform, opacity;
+            border: 1px solid #E2E8F0;
+        }
+        
+        /* Form input styling */
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #E2E8F0;
+            border-radius: 0.5rem;
+            background-color: #F8F9FA;
+            color: #1A202C;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4A5568;
+        }
+        
+        /* Custom radio/checkbox styling for better visual feedback */
+        .custom-radio:checked {
+            background-color: #3B82F6;
+            border-color: #3B82F6;
+        }
+        .custom-radio:checked + span {
+            font-weight: 600;
+            color: #1A202C;
+        }
+        .custom-checkbox:checked {
+            background-color: #3B82F6;
+            border-color: #3B82F6;
+        }
+
+    </style>
 </head>
-<body role="document">
-  <!-- Skip Navigation -->
-  <a href="#mainContent" class="skip-nav">Skip to content</a>
-  
-  <!-- Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-          .then(reg => console.log('Service Worker registered with scope:', reg.scope))
-          .catch(err => console.error('Service Worker registration failed:', err));
-      });
-    }
-  </script>
-  
-  <!-- Navigation -->
-  <nav class="navbar" role="navigation">
-    <div class="container nav-container">
-      <div class="logo">James Drew Cassidy</div>
-      <ul class="nav-links">
-        <li><a href="#start">Start</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#random">Random Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-  
-  <!-- Hero Section with Particle Canvas and Parallax -->
-  <header id="start" class="hero" role="banner">
-    <canvas id="particleCanvas"></canvas>
-    <div class="container hero-content">
-      <h1 class="hero-title">Hi, my name is <span class="gradient-text">James Drew Cassidy</span></h1>
-      <p class="tagline">I’m driven by an insatiable curiosity—constantly exploring the newest technologies, hacking techniques, and innovative AI methods. I love researching how hackers operate and how white hats defend, always pushing my limits and sharing my findings.</p>
-      <a href="#work" class="hero-btn">Let me show you &rarr;</a>
-    </div>
-  </header>
-  
-  <!-- Main Content -->
-  <main id="mainContent">
-    <!-- Work Section -->
-    <section id="work" class="section" role="region" aria-labelledby="work-heading">
-      <div class="container">
-        <h2 id="work-heading">Work</h2>
-        <p>Here you'll find a selection of my most impactful projects—where I merge modern web development with advanced security research and AI-driven innovations. (GitHub repos coming soon!)</p>
-        <div class="project-grid">
-          <div class="project-card">
-            <img src="assets/project1.jpg" alt="Innovative Web App" loading="lazy">
-            <h3>Innovative Web App</h3>
-            <p>A cutting‑edge application built with secure coding practices and modern frameworks for seamless user experiences.</p>
-          </div>
-          <div class="project-card">
-            <img src="assets/project2.jpg" alt="Responsive Design" loading="lazy">
-            <h3>Responsive Design</h3>
-            <p>A portfolio of fluid layouts and adaptive interfaces engineered for performance on every device.</p>
-          </div>
-          <div class="project-card">
-            <img src="assets/project3.jpg" alt="Security Solutions" loading="lazy">
-            <h3>Security Solutions</h3>
-            <p>Advanced projects focused on safeguarding web applications with robust security measures.</p>
-          </div>
+<body class="bg-background text-primary font-sans antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="home" class="relative min-h-screen flex items-center overflow-hidden">
+        <canvas id="hero-canvas"></canvas>
+
+        <!-- Navigation -->
+        <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+            <div class="container mx-auto flex justify-between items-center px-6">
+                <a href="#home" class="text-3xl font-serif font-bold tracking-wider text-primary hover:text-accent transition-colors">DC</a>
+                <div class="hidden md:flex items-center space-x-8 text-primary font-semibold">
+                    <a href="#showcase" class="hover:text-accent transition-colors duration-300">Work</a>
+                    <a href="#services" class="hover:text-accent transition-colors duration-300">Services</a>
+                    <a href="#about" class="hover:text-accent transition-colors duration-300">About</a>
+                    <a href="#contact" class="bg-transparent text-accent border-2 border-accent rounded-lg font-bold py-2 px-5 hover:bg-accent hover:text-white transition-all duration-300">Contact</a>
+                </div>
+                 <button id="mobile-menu-btn" class="md:hidden text-3xl z-50 text-primary">
+                    <svg id="menu-open-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg id="menu-close-icon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-0 bg-background/95 backdrop-blur-sm z-40 flex-col items-center justify-center space-y-8 text-2xl hidden md:hidden text-primary font-semibold">
+            <a href="#showcase" class="mobile-link hover:text-accent transition-colors duration-300">Work</a>
+            <a href="#services" class="mobile-link hover:text-accent transition-colors duration-300">Services</a>
+            <a href="#about" class="mobile-link hover:text-accent transition-colors duration-300">About</a>
+            <a href="#contact" class="mobile-link text-accent">Contact</a>
         </div>
-      </div>
-    </section>
-    
-    <!-- Random Projects Section -->
-    <section id="random" class="section" role="region" aria-labelledby="random-heading">
-      <div class="container">
-        <h2 id="random-heading">Random Projects</h2>
-        <p>This section features a curated collection of experimental and playful projects—where I explore unexpected tech hacks, test new security ideas, and experiment with AI-driven code generation. New GitHub projects and scripts will be added as they evolve.</p>
-      </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="section" role="region" aria-labelledby="about-heading">
-      <div class="container">
-        <h2 id="about-heading">About</h2>
-        <p>
-          I am a self‑taught IT specialist who thrives on learning the latest technologies—from innovative software and hardware to breakthrough AI and cybersecurity trends. I passionately research hacker techniques and white hat countermeasures, even if my hands‑on security experience is still growing. I also leverage AI by creating, refining, and stress‑testing prompts to build state‑of‑the‑art generative models. My portfolio is a living document of my journey, continuously updated with new GitHub projects, scripts, and experiments.
-        </p>
-      </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="section" role="region" aria-labelledby="contact-heading">
-      <div class="container">
-        <h2 id="contact-heading">Contact</h2>
-        <p>If you’re interested in job offers, opportunities, or have any questions, please email me directly at <a href="mailto:nmh1337nmh@gmail.com">nmh1337nmh@gmail.com</a>.</p>
-      </div>
-    </section>
-  </main>
-  
-  <!-- Footer -->
-  <footer role="contentinfo">
-    <div class="container">
-      <p>© 2025 James Drew Cassidy. All rights reserved.</p>
-    </div>
-  </footer>
-  
-  <!-- Back to Top Button -->
-  <button id="backToTop" aria-label="Back to top">&uarr;</button>
-  
-  <!-- Chatbot Widget -->
-  <div id="chatbot-widget" class="chatbot-collapsed" role="complementary" aria-label="Chatbot">
-    <div id="chatbot-header">
-      Chat with me
-      <span id="chatbot-toggle">&#x25B2;</span>
-    </div>
-    <div id="chatbot-body">
-      <div id="chatbot-messages" aria-live="polite"></div>
-      <div id="chatbot-prompts">
-        <button class="chatbot-prompt" data-prompt="projects">Projects</button>
-        <button class="chatbot-prompt" data-prompt="achievements">Achievements</button>
-        <button class="chatbot-prompt" data-prompt="resume">Resume</button>
-        <button class="chatbot-prompt" data-prompt="ai">AI Info</button>
-      </div>
-    </div>
-  </div>
+
+        <!-- Hero Content -->
+        <div class="container mx-auto px-6 z-10">
+            <div class="max-w-4xl stagger-reveal">
+                <h1 class="text-5xl sm:text-7xl md:text-8xl font-serif font-bold text-primary mb-4 animate-on-scroll" style="--stagger-delay: 150ms;">Drew Cassidy.</h1>
+                <h2 class="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-secondary mb-8 animate-on-scroll" style="--stagger-delay: 250ms;">I build things for the web.</h2>
+                <p class="text-lg text-secondary max-w-2xl mb-12 animate-on-scroll" style="--stagger-delay: 350ms;">I’m a front-end developer specializing in building exceptional, high-performance digital experiences. I create fast, accessible, and beautiful websites that help my clients succeed.</p>
+                <div class="animate-on-scroll" style="--stagger-delay: 450ms;">
+                    <a href="#showcase" class="bg-accent text-white font-bold py-4 px-10 rounded-lg text-lg hover:bg-accent-hover transition-all duration-300 transform hover:scale-105 shadow-glow inline-block">
+                        View My Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+        <!-- Showcase Section -->
+        <section id="showcase" class="py-28">
+            <div class="title-reveal-container animate-on-scroll mb-16">
+                <h2 class="section-title text-4xl font-serif font-bold text-primary">Selected Work</h2>
+            </div>
+            
+            <div id="showcase-container">
+                <!-- Project Item 1 -->
+                <div class="project-card-container">
+                    <div class="project-card light-card p-8 rounded-lg">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                            <div class="lg:col-span-7 relative group">
+                                <a href="https://businesspreview.drewcassidy.dev" target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden shadow-medium transition-shadow duration-300 group-hover:shadow-xl">
+                                    <img src="https://s.wordpress.com/mshots/v1/businesspreview.drewcassidy.dev?w=800&h=500" alt="Coffee Shop Demo Screenshot" class="w-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-105">
+                                </a>
+                            </div>
+                            <div class="lg:col-span-5 text-left lg:text-right">
+                                <p class="text-accent font-semibold">Featured Project</p>
+                                <h3 class="text-3xl font-serif font-bold text-primary my-2">Coffee Shop Demo</h3>
+                                <div class="bg-white p-6 my-4 rounded-lg shadow-inner">
+                                    <p class="text-secondary">A fully responsive business website for a specialty coffee shop, featuring a dynamic menu, beautiful galleries, and clear contact information to drive customer engagement.</p>
+                                </div>
+                                <div class="flex lg:justify-end space-x-4 font-semibold text-secondary">
+                                    <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item 2 -->
+                <div class="project-card-container">
+                    <div class="project-card light-card p-8 rounded-lg">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                            <div class="lg:col-span-7 relative group">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden shadow-medium transition-shadow duration-300 group-hover:shadow-xl">
+                                    <img src="https://placehold.co/800x500/1A202C/FFFFFF?text=SaaS+Platform" alt="SaaS Platform Screenshot" class="w-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-105">
+                                </a>
+                            </div>
+                            <div class="lg:col-span-5 text-left lg:text-right">
+                                <p class="text-accent font-semibold">Featured Project</p>
+                                <h3 class="text-3xl font-serif font-bold text-primary my-2">SaaS Platform UI</h3>
+                                <div class="bg-white p-6 my-4 rounded-lg shadow-inner">
+                                    <p class="text-secondary">A clean and intuitive user interface for a complex data analytics SaaS product. Built with React and Tailwind CSS for a highly scalable and maintainable codebase.</p>
+                                </div>
+                                <div class="flex lg:justify-end space-x-4 font-semibold text-secondary">
+                                    <span>React</span><span>Tailwind CSS</span><span>Figma</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== SERVICES SECTION - UPDATED ======== -->
+        <section id="services" class="py-28">
+            <div class="title-reveal-container animate-on-scroll text-center mb-16">
+                <h2 class="section-title center text-4xl font-serif font-bold text-primary">Services & Pricing</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start animate-on-scroll">
+                <!-- Gig Card 1 -->
+                <div class="light-card rounded-lg p-8 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold text-primary">Design-only Landing Page</h3>
+                    <p class="text-secondary mb-6">(ZIP hand-off)</p>
+                    <div class="space-y-6 flex-grow">
+                        <!-- Tiers... -->
+                        <div>
+                            <h4 class="font-bold text-lg text-primary">BASIC</h4>
+                            <p class="text-3xl font-bold text-primary my-2">$199</p>
+                            <ul class="text-secondary space-y-2 text-sm">
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Template-based design (≤ 5 sections)</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>1 revision</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Optimised HTML/CSS/JS ZIP</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>3-day delivery</li>
+                            </ul>
+                        </div>
+                        <div class="border-2 border-accent p-4 rounded-lg relative">
+                            <span class="absolute -top-3 left-4 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">★ Most popular</span>
+                            <h4 class="font-bold text-lg text-primary">STANDARD</h4>
+                            <p class="text-3xl font-bold text-primary my-2">$399</p>
+                            <ul class="text-secondary space-y-2 text-sm">
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Custom Figma design (≤ 7 sections)</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>2 revisions</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Smooth scroll / fade animation</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>5-day delivery</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-primary">PREMIUM</h4>
+                            <p class="text-3xl font-bold text-primary my-2">$799</p>
+                            <ul class="text-secondary space-y-2 text-sm">
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Fully Custom Design & Animations</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>3 revisions + light copy polish</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Includes Color Palette & Font Guide</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>7-day delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gig Card 2 -->
+                <div class="light-card rounded-lg p-8 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold text-primary">Domain + Landing Page + Hosting</h3>
+                    <p class="text-secondary mb-6">&nbsp;</p>
+                     <div class="space-y-6 flex-grow">
+                        <!-- Tiers... -->
+                        <div>
+                            <h4 class="font-bold text-lg text-primary">BASIC</h4>
+                            <p class="text-3xl font-bold text-primary my-2">$399</p>
+                            <ul class="text-secondary space-y-2 text-sm">
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Five available domain options</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Template build, 1 revision</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Deployed on Cloudflare Pages</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>5-day delivery</li>
+                            </ul>
+                        </div>
+                        <div class="border-2 border-accent p-4 rounded-lg relative">
+                            <span class="absolute -top-3 left-4 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">★ Most popular</span>
+                            <h4 class="font-bold text-lg text-primary">STANDARD</h4>
+                            <p class="text-3xl font-bold text-primary my-2">$899</p>
+                            <ul class="text-secondary space-y-2 text-sm">
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Five domain options & registration</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Custom design, 2 revisions</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>DNS, SSL, email-forward setup</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>7-day delivery</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-primary">PREMIUM</h4>
+                            <p class="text-3xl font-bold text-primary my-2">$1,599</p>
+                            <ul class="text-secondary space-y-2 text-sm">
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Fully Custom Design & Advanced Animations</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>3 revisions & 90-day after-care</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Basic Content Management Setup</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Loom walk-through</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add-ons & Domain Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 animate-on-scroll">
+                <div class="light-card rounded-lg p-8">
+                    <h3 class="text-2xl font-bold text-primary mb-4">Popular Add-ons</h3>
+                    <ul class="space-y-3 text-secondary">
+                        <li>• Extra page: <span class="font-semibold text-primary">+ $150</span></li>
+                        <li>• 48-h rush delivery: <span class="font-semibold text-primary">+ $200</span></li>
+                    </ul>
+                </div>
+                <div class="light-card rounded-lg p-8">
+                    <h3 class="text-2xl font-bold text-primary mb-4">How the domain part works</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-secondary">
+                        <li>You give me a keyword or company name.</li>
+                        <li>I find 5 available, brand-safe domains that match it.</li>
+                        <li>You pick one → I register it at my cost and connect it. No hoops, no upsells, no jargon.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-28">
+             <div class="title-reveal-container animate-on-scroll mb-16">
+                <h2 class="section-title text-4xl font-serif font-bold text-primary">About Me</h2>
+             </div>
+             <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+                 <div class="lg:col-span-3 space-y-4 text-lg text-secondary stagger-reveal">
+                     <p class="animate-on-scroll" style="--stagger-delay: 100ms;">Hello! I'm Drew, a front-end developer with a passion for creating things that live on the internet. My interest in web development started back in high school when I decided to build a custom MySpace theme — turns out hacking together a digital identity taught me a lot about HTML & CSS!</p>
+                     <p class="animate-on-scroll" style="--stagger-delay: 200ms;">Today, my main focus is building accessible, inclusive products and high-performance digital experiences for a variety of clients.</p>
+                     <p class="font-semibold text-primary animate-on-scroll" style="--stagger-delay: 300ms;">Here are a few technologies I’ve been working with recently:</p>
+                     <ul class="grid grid-cols-2 gap-x-6 gap-y-2 mt-4 text-primary animate-on-scroll" style="--stagger-delay: 400ms;">
+                         <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>JavaScript (ES6+)</li>
+                         <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>React</li>
+                         <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Node.js</li>
+                         <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Tailwind CSS</li>
+                     </ul>
+                 </div>
+                 <div class="lg:col-span-2 animate-on-scroll" style="--stagger-delay: 200ms;">
+                     <div class="relative w-full max-w-sm mx-auto group">
+                         <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg blur-xl opacity-50 group-hover:opacity-75 transition duration-1000"></div>
+                         <img src="https://placehold.co/500x500/E2E8F0/1A202C?text=Drew+Cassidy" alt="Drew Cassidy Portrait" class="relative rounded-lg shadow-medium w-full object-cover">
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- ======== CONTACT SECTION - REVISED ======== -->
+        <section id="contact" class="py-28 text-left">
+            <div class="title-reveal-container animate-on-scroll mb-6 text-center">
+                <h2 class="section-title center text-4xl sm:text-5xl font-serif font-bold text-primary">Let's Build Together</h2>
+            </div>
+            <p class="max-w-2xl mx-auto text-center text-secondary mb-12 animate-on-scroll" style="--stagger-delay: 200ms;">
+                Ready to start your project? Fill out the form below. I'll generate a pre-filled email for you to send from your own email client.
+            </p>
+            
+            <div class="max-w-4xl mx-auto animate-on-scroll light-card p-8 md:p-12 rounded-lg" style="--stagger-delay: 300ms;">
+                <div id="contact-form-fields">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" name="name" id="name" required class="form-input">
+                        </div>
+                        <div>
+                            <label for="email" class="form-label">Your Email Address</label>
+                            <input type="email" name="email" id="email" required class="form-input" placeholder="So I know where to reply to!">
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="form-label">Which service are you interested in?</label>
+                        <div id="service_type_group" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-accent has-[:checked]:border-accent has-[:checked]:bg-blue-50">
+                                <input type="radio" name="service_type" value="Design-only Landing Page" class="custom-radio text-accent focus:ring-accent mr-4">
+                                <span>Design-only Landing Page</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-accent has-[:checked]:border-accent has-[:checked]:bg-blue-50">
+                                <input type="radio" name="service_type" value="Domain + Hosting Package" class="custom-radio text-accent focus:ring-accent mr-4">
+                                <span>Domain + Hosting Package</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="package_tier" class="form-label">Select a Package Tier</label>
+                        <select name="package_tier" id="package_tier" class="form-input">
+                            <option value="Not Sure">I'm not sure yet</option>
+                            <option value="Basic">Basic</option>
+                            <option value="Standard">Standard</option>
+                            <option value="Premium">Premium</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="form-label">Any Add-ons? (Optional)</label>
+                        <div id="addons_group" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-accent has-[:checked]:border-accent has-[:checked]:bg-blue-50">
+                                <input type="checkbox" name="addons" value="Extra Page (+$150)" class="custom-checkbox text-accent focus:ring-accent mr-3 rounded">
+                                <span>Extra Page (+$150)</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-accent has-[:checked]:border-accent has-[:checked]:bg-blue-50">
+                                <input type="checkbox" name="addons" value="48-h Rush Delivery (+$200)" class="custom-checkbox text-accent focus:ring-accent mr-3 rounded">
+                                <span>48-h Rush Delivery (+$200)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="message" class="form-label">Tell me about your project</label>
+                        <textarea name="message" id="message" rows="5" required class="form-textarea" placeholder="Describe your business, what you're looking for, any websites you like, and your goals. If you need a domain, mention some keywords."></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button" id="generate-email-btn" class="bg-accent text-white font-bold py-4 px-10 rounded-lg text-lg hover:bg-accent-hover transition-all duration-300 transform hover:scale-105 shadow-glow inline-block w-full sm:w-auto">
+                            Generate Email
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- This div will show the generated email content and actions -->
+                <div id="email-preview-container" class="hidden mt-8">
+                    <h3 class="text-2xl font-bold text-primary mb-4 text-center">Your Email is Ready</h3>
+                    <div class="mb-4">
+                         <label for="email-preview" class="form-label">Generated Email Content:</label>
+                         <textarea id="email-preview" rows="12" class="form-textarea w-full bg-white" readonly></textarea>
+                    </div>
+                    <div id="copy-status" class="text-center text-green-600 font-semibold h-6 mb-2"></div>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button type="button" id="copy-email-btn" class="bg-gray-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-700 transition-all duration-300 w-full sm:w-auto">
+                            Copy for Email
+                        </button>
+                        <a id="open-email-link" href="#" target="_blank" class="bg-accent text-white font-bold py-3 px-8 rounded-lg hover:bg-accent-hover transition-all duration-300 text-center w-full sm:w-auto">
+                            Open in Email App
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center">
+        <div class="container mx-auto px-6 text-secondary">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://github.com/JamesDrewCassidy" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors duration-300" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors duration-300" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Drew Cassidy. Designed & Built with Passion.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Global Setup ---
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- Navigation Bar Logic ---
+        const navbar = document.getElementById('navbar');
+        let isNavScrolling = false;
+        window.addEventListener('scroll', () => {
+            if (!isNavScrolling) {
+                window.requestAnimationFrame(() => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('bg-white/80', 'shadow-subtle', 'backdrop-blur-sm');
+                    } else {
+                        navbar.classList.remove('bg-white/80', 'shadow-subtle', 'backdrop-blur-sm');
+                    }
+                    isNavScrolling = false;
+                });
+                isNavScrolling = true;
+            }
+        });
+        
+        // --- Mobile Menu Logic ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOpenIcon = document.getElementById('menu-open-icon');
+        const menuCloseIcon = document.getElementById('menu-close-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        const toggleMenu = () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            document.body.style.overflow = isHidden ? 'hidden' : '';
+            mobileMenu.classList.toggle('hidden', !isHidden);
+            mobileMenu.classList.toggle('flex', isHidden);
+            menuOpenIcon.classList.toggle('hidden', isHidden);
+            menuCloseIcon.classList.toggle('hidden', !isHidden);
+        };
+        
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // --- Intersection Observer for scroll animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        
+        document.querySelectorAll('#home .animate-on-scroll').forEach((el) => {
+             setTimeout(() => {
+                 el.classList.add('is-visible');
+             }, 100);
+        });
+
+        // --- Initialize advanced effects ---
+        if (window.THREE) {
+            initHeroAnimation();
+        }
+        initShowcaseScroll();
+
+        // --- Three.js Hero Animation ---
+        function initHeroAnimation() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const particleCount = 3000;
+            const positions = new Float32Array(particleCount * 3);
+            for (let i = 0; i < particleCount * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 15;
+            }
+            const particlesGeometry = new THREE.BufferGeometry();
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.008,
+                color: '#4A5568'
+            });
+            const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particles);
+
+            camera.position.z = 5;
+
+            const mouse = new THREE.Vector2();
+            window.addEventListener('mousemove', (event) => {
+                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            const clock = new THREE.Clock();
+            const animate = () => {
+                const elapsedTime = clock.getElapsedTime();
+                particles.rotation.y = elapsedTime * 0.02;
+                particles.rotation.x = -mouse.y * 0.05;
+                particles.rotation.y += mouse.x * 0.05;
+                
+                renderer.render(scene, camera);
+                window.requestAnimationFrame(animate);
+            };
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            });
+        }
+
+        // --- Experiential Showcase Scroll ---
+        function initShowcaseScroll() {
+            const projectCards = document.querySelectorAll('.project-card');
+            if (projectCards.length === 0) return;
+
+            let isShowcaseScrolling = false;
+            
+            const handleScroll = () => {
+                if (!isShowcaseScrolling) {
+                    window.requestAnimationFrame(() => {
+                        projectCards.forEach((card, i) => {
+                            const rect = card.getBoundingClientRect();
+                            const top = rect.top;
+                            const start = window.innerHeight * 0.1;
+                            const end = 0;
+
+                            if (top < start && top > end) {
+                                const progress = 1 - (top - end) / (start - end);
+                                const scale = 1 - (progress * (0.05 * (projectCards.length - 1 - i)));
+                                const opacity = 1 - (progress * (0.2 * (projectCards.length - 1 - i)));
+                                card.style.transform = `scale(${scale})`;
+                                card.style.opacity = opacity;
+                            } else if (top <= end) {
+                                const scale = 1 - (0.05 * (projectCards.length - 1 - i));
+                                const opacity = 1 - (0.2 * (projectCards.length - 1 - i));
+                                card.style.transform = `scale(${scale})`;
+                                card.style.opacity = opacity;
+                            } else {
+                                card.style.transform = 'scale(1)';
+                                card.style.opacity = 1;
+                            }
+                        });
+                        isShowcaseScrolling = false;
+                    });
+                    isShowcaseScrolling = true;
+                }
+            };
+            
+            window.addEventListener('scroll', handleScroll);
+        }
+
+        // --- ======== NEW: Mailto Form Generation Logic ======== ---
+        const generateBtn = document.getElementById('generate-email-btn');
+        const copyBtn = document.getElementById('copy-email-btn');
+        const emailLink = document.getElementById('open-email-link');
+        const emailPreviewContainer = document.getElementById('email-preview-container');
+        const emailPreviewTextarea = document.getElementById('email-preview');
+        const copyStatus = document.getElementById('copy-status');
+
+        generateBtn.addEventListener('click', () => {
+            // 1. Get all form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const serviceType = document.querySelector('input[name="service_type"]:checked')?.value;
+            const packageTier = document.getElementById('package_tier').value;
+            const message = document.getElementById('message').value;
+            
+            const selectedAddons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(cb => cb.value);
+
+            // 2. Basic Validation
+            if (!name || !email || !message || !serviceType) {
+                alert('Please fill out all required fields: Name, Email, Service Type, and Project Description.');
+                return;
+            }
+
+            // 3. Format the email body
+            let emailBody = `New Project Inquiry\n`;
+            emailBody += `---------------------------------\n`;
+            emailBody += `Name: ${name}\n`;
+            emailBody += `Reply-to Email: ${email}\n\n`;
+            emailBody += `SERVICE DETAILS\n`;
+            emailBody += `---------------------------------\n`;
+            emailBody += `Service Type: ${serviceType}\n`;
+            emailBody += `Package Tier: ${packageTier}\n`;
+            
+            if (selectedAddons.length > 0) {
+                emailBody += `Selected Add-ons:\n${selectedAddons.map(a => `  - ${a}`).join('\n')}\n`;
+            } else {
+                emailBody += `Selected Add-ons: None\n`;
+            }
+
+            emailBody += `\nPROJECT DESCRIPTION\n`;
+            emailBody += `---------------------------------\n`;
+            emailBody += `${message}\n`;
+
+            // 4. Populate the preview and mailto link
+            emailPreviewTextarea.value = emailBody;
+            
+            const mailtoSubject = "New Project Inquiry from drewcassidy.dev";
+            const mailtoHref = `mailto:james@drewcassidy.dev?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(emailBody)}`;
+            emailLink.href = mailtoHref;
+
+            // 5. Show the preview section
+            emailPreviewContainer.classList.remove('hidden');
+            copyStatus.textContent = ''; // Clear previous status
+            
+            // Scroll to the preview area for better UX
+            emailPreviewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        copyBtn.addEventListener('click', () => {
+            emailPreviewTextarea.select();
+            emailPreviewTextarea.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                // Use modern clipboard API if available, with a fallback
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(emailPreviewTextarea.value).then(() => {
+                        copyStatus.textContent = 'Copied to clipboard!';
+                        setTimeout(() => copyStatus.textContent = '', 2000);
+                    });
+                } else {
+                    // Fallback for older browsers
+                    document.execCommand('copy');
+                    copyStatus.textContent = 'Copied to clipboard!';
+                    setTimeout(() => copyStatus.textContent = '', 2000);
+                }
+            } catch (err) {
+                copyStatus.textContent = 'Failed to copy.';
+                console.error('Failed to copy text: ', err);
+            }
+        });
+    });
+    </script>
 </body>
 </html>
