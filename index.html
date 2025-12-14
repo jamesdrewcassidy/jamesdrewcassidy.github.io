@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>James Drew Cassidy | Technical Operations Professional</title>
-    <meta name="description" content="Portfolio of James Drew Cassidy - Technical Operations Professional specializing in IT support, network operations, and process automation.">
+    <title>James Drew Cassidy | Technical Operations</title>
+    <meta name="description" content="Portfolio of James Drew Cassidy - Technical Operations Professional. Experience in inspections coordination, NOC operations, and process automation.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -47,10 +47,11 @@
             body { color: black; background: white; }
             a { text-decoration: none; color: black; }
             .print-break { page-break-inside: avoid; }
+            .print-hidden { display: none; }
         }
         
         .glass-nav {
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
         }
     </style>
@@ -58,7 +59,7 @@
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-200 selection:text-blue-900">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav border-b border-slate-700/50 shadow-lg transition-all duration-300">
+    <nav class="fixed w-full z-50 glass-nav border-b border-slate-700/50 shadow-lg transition-all duration-300 no-print">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0 text-white font-bold text-xl tracking-tight">
@@ -67,7 +68,7 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="#about" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
-                        <a href="#projects" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Engineering</a>
+                        <a href="#projects" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Tools & Automation</a>
                         <a href="#experience" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
                         <a href="#skills" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills</a>
                         <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-md hover:shadow-lg">Contact Me</a>
@@ -85,7 +86,7 @@
         <div class="hidden md:hidden bg-slate-800 border-t border-slate-700" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#about" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="#projects" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Engineering</a>
+                <a href="#projects" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tools & Automation</a>
                 <a href="#experience" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experience</a>
                 <a href="#skills" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
                 <a href="#contact" class="text-blue-400 font-bold block px-3 py-2 rounded-md text-base">Contact Me</a>
@@ -94,9 +95,9 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="about" class="relative bg-slate-900 text-white pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <!-- Background decorative elements -->
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+    <section id="about" class="relative bg-slate-900 text-white pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden print:pt-10 print:pb-10 print:bg-white print:text-black">
+        <!-- Background decorative elements (Screen only) -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none no-print">
             <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-600 blur-3xl"></div>
             <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-teal-600 blur-3xl"></div>
         </div>
@@ -104,62 +105,76 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-sm font-medium mb-6">
-                        <span class="flex h-2 w-2 rounded-full bg-green-400 mr-2 animate-pulse"></span>
-                        Available for Technical Operations Roles
-                    </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-                        James Drew <span class="text-blue-500">Cassidy</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight print:text-black">
+                        James Drew <span class="text-blue-500 print:text-black">Cassidy</span>
                     </h1>
-                    <p class="text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl">
-                        Technical Operations Professional bridging the gap between IT infrastructure and process automation. I learn systems quickly, take ownership of complex problems, and build practical tools that improve efficiency.
+                    <p class="text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl print:text-gray-700">
+                        Technical Operations Professional. I specialize in bridging the gap between hardware infrastructure and process automation. I don't just fix systems; I build the tools that make them run smoother.
                     </p>
                     
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500">
-                            <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
-                            Get in Touch
+                    <div class="flex flex-wrap gap-4 no-print">
+                        <!-- Direct Link to Resume PDF -->
+                        <a href="JamesCassidyResume.pdf" download class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500">
+                            <i data-lucide="download" class="w-5 h-5 mr-2"></i>
+                            Download Resume
                         </a>
+                        <!-- Print View Fallback -->
                         <a href="javascript:window.print()" class="inline-flex items-center px-6 py-3 border border-slate-600 text-base font-medium rounded-lg text-slate-200 bg-transparent hover:bg-slate-800 transition-all">
-                            <i data-lucide="file-text" class="w-5 h-5 mr-2"></i>
-                            Print Resume
+                            <i data-lucide="printer" class="w-5 h-5 mr-2"></i>
+                            Print View
                         </a>
                     </div>
+                    <div class="text-xs text-slate-500 mt-2 no-print italic">
+                        * Resume PDF file is available for direct download.
+                    </div>
 
-                    <div class="mt-10 flex flex-wrap gap-6 text-slate-400 text-sm font-medium">
+                    <div class="mt-10 flex flex-wrap gap-6 text-slate-400 text-sm font-medium print:text-gray-600 print:mt-4">
                         <div class="flex items-center">
-                            <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-blue-500"></i>
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-blue-500 print:text-black"></i>
                             Waterloo, WI
                         </div>
                         <div class="flex items-center">
-                            <i data-lucide="monitor" class="w-4 h-4 mr-2 text-blue-500"></i>
-                            IT Operations & Support
+                            <i data-lucide="mail" class="w-4 h-4 mr-2 text-blue-500 print:text-black"></i>
+                            james@drewcassidy.dev
                         </div>
                         <div class="flex items-center">
-                            <i data-lucide="code" class="w-4 h-4 mr-2 text-blue-500"></i>
-                            Automation & Scripting
+                            <i data-lucide="phone" class="w-4 h-4 mr-2 text-blue-500 print:text-black"></i>
+                            608-301-5321
                         </div>
                     </div>
                 </div>
                 
-                <!-- "Terminal" style summary card -->
-                <div class="hidden lg:block">
-                    <div class="bg-slate-800 rounded-xl border border-slate-700 shadow-2xl overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                        <div class="bg-slate-900 px-4 py-3 border-b border-slate-700 flex items-center gap-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span class="ml-2 text-xs text-slate-500 font-mono">summary.txt</span>
-                        </div>
-                        <div class="p-6 font-mono text-sm text-slate-300 leading-relaxed">
-                            <p class="mb-4"><span class="text-blue-400">const</span> <span class="text-yellow-300">professionalSummary</span> = {</p>
-                            <div class="pl-4 border-l-2 border-slate-700 space-y-2">
-                                <p><span class="text-purple-400">role:</span> <span class="text-green-400">"Technical Operations Professional"</span>,</p>
-                                <p><span class="text-purple-400">strengths:</span> [<span class="text-green-400">"Process Automation"</span>, <span class="text-green-400">"Network Ops"</span>, <span class="text-green-400">"Leadership"</span>],</p>
-                                <p><span class="text-purple-400">philosophy:</span> <span class="text-green-400">"Known for learning new systems quickly and improving processes through practical tools."</span>,</p>
-                                <p><span class="text-purple-400">status:</span> <span class="text-green-400">"Ready to deploy"</span></p>
+                <!-- Snapshot Card (Replaces the "Terminal" for a more professional look) -->
+                <div class="hidden lg:block print:hidden">
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700 rounded-xl p-8 shadow-2xl">
+                        <h3 class="text-lg font-semibold text-white mb-6 border-b border-slate-700 pb-4">Professional Snapshot</h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold mb-1">Current Role</div>
+                                <div class="text-white font-medium flex items-center">
+                                    Inspections Coordinator
+                                    <span class="ml-2 px-2 py-0.5 rounded text-xs bg-green-500/20 text-green-400 border border-green-500/30">Active</span>
+                                </div>
+                                <div class="text-slate-400 text-sm">Omni Technologies LLC</div>
                             </div>
-                            <p class="mt-4">};</p>
+                            
+                            <div>
+                                <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold mb-1">Core Competencies</div>
+                                <div class="flex flex-wrap gap-2 mt-2">
+                                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-slate-200">Network Ops</span>
+                                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-slate-200">Process Automation</span>
+                                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-slate-200">Team Leadership</span>
+                                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-slate-200">Hardware Support</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold mb-1">Philosophy</div>
+                                <p class="text-slate-300 text-sm italic">
+                                    "I learn systems quickly, take ownership of complex problems, and improve processes through practical tools."
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -168,141 +183,153 @@
     </section>
 
     <!-- Engineering & Automation Highlights -->
-    <section id="projects" class="py-20 bg-white">
+    <section id="projects" class="py-20 bg-white print:py-10">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Engineering & Automation</h2>
-                <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-                    Beyond standard operations, I design and implement internal tools to eliminate bottlenecks and standardize quality.
+            <div class="mb-12 print:mb-6">
+                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Tooling & Automation</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-3xl">
+                    One of my strongest assets is identifying operational bottlenecks and building custom software solutions to fix them. These are tools I designed and deployed at Omni Technologies.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Project 1 -->
-                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow print:border-black print:shadow-none print:bg-white print:p-0">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 print:hidden">
                         <i data-lucide="smartphone" class="w-6 h-6 text-blue-600"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3">Digital Device Checklist</h3>
-                    <p class="text-slate-600 mb-4">
-                        Replaced error-prone paper reports with a streamlined digital interface for field inspectors.
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
+                        The previous inspection process relied on paper reports which were prone to data entry errors. I built a digital interface that field inspectors use on-site.
                     </p>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Reduced data entry errors</li>
-                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Improved compliance speed</li>
-                    </ul>
+                    <div class="border-t border-slate-200 pt-4 mt-auto">
+                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Impact</div>
+                        <ul class="space-y-1 text-sm text-slate-700">
+                            <li>• Eliminated paper-to-digital transcription errors.</li>
+                            <li>• Standardized data collection across the team.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow print:border-black print:shadow-none print:bg-white print:p-0">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6 print:hidden">
                         <i data-lucide="file-code" class="w-6 h-6 text-purple-600"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Automated PDF Tooling</h3>
-                    <p class="text-slate-600 mb-4">
-                        Created a custom tool for automated PDF bookmarking and report navigation.
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">PDF Bookmark Automation</h3>
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
+                        Reviewing massive inspection reports was slow due to lack of navigation. I scripted a tool that automatically generates bookmarks for every device and section in the PDF.
                     </p>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Accelerates report review</li>
-                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Enhances client deliverable quality</li>
-                    </ul>
+                    <div class="border-t border-slate-200 pt-4 mt-auto">
+                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Impact</div>
+                        <ul class="space-y-1 text-sm text-slate-700">
+                            <li>• Drastically reduced report review time.</li>
+                            <li>• Improved navigation for clients and AHJs.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-6">
+                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow print:border-black print:shadow-none print:bg-white print:p-0">
+                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-6 print:hidden">
                         <i data-lucide="mail-check" class="w-6 h-6 text-teal-600"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3">Report Parser & Emailer</h3>
-                    <p class="text-slate-600 mb-4">
-                        A parser that extracts failed device summaries and auto-generates customer email templates.
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
+                        Manually typing up discrepancy emails was repetitive. I built a parser that reads the report, extracts failed devices, and generates the client email automatically.
                     </p>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Standardized client communication</li>
-                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Drastically reduced admin time</li>
-                    </ul>
+                    <div class="border-t border-slate-200 pt-4 mt-auto">
+                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Impact</div>
+                        <ul class="space-y-1 text-sm text-slate-700">
+                            <li>• Ensured consistent, professional communication.</li>
+                            <li>• Freeing up hours of administrative time per week.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Professional Experience -->
-    <section id="experience" class="py-20 bg-slate-50 border-t border-slate-200">
+    <section id="experience" class="py-20 bg-slate-50 border-t border-slate-200 print:bg-white print:py-6">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-12 flex items-center">
-                <i data-lucide="briefcase" class="w-8 h-8 mr-4 text-blue-600"></i>
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 flex items-center print:mb-6">
+                <i data-lucide="briefcase" class="w-8 h-8 mr-4 text-blue-600 print:hidden"></i>
                 Professional Experience
             </h2>
 
-            <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+            <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent print:before:hidden">
                 
                 <!-- Job 1 -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-blue-600 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active print:block print:mb-6">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-blue-600 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 print:hidden">
                         <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-200 shadow-sm print-break">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 rounded-xl border border-slate-200 shadow-sm print-break print:w-full print:border-0 print:p-0 print:shadow-none">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="font-bold text-slate-900 text-lg">Inspections Coordinator</h3>
-                            <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded">Current</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded print:border print:border-green-800">Current</span>
                         </div>
-                        <div class="text-blue-600 font-medium mb-1">Omni Technologies LLC</div>
-                        <time class="text-slate-400 text-sm mb-4 block">Nov 2024 - Present</time>
-                        <ul class="text-slate-600 text-sm space-y-2 list-disc list-outside ml-4">
-                            <li>Supervise a team of six inspectors performing commercial fire alarm inspections across Wisconsin.</li>
-                            <li>Designed internal web-based tools (Device Checklist, PDF Bookmark Tool) to improve operational efficiency.</li>
-                            <li>Serve as escalation point for technical issues, applying structured troubleshooting.</li>
-                            <li>Oversee full inspection lifecycle: logistics, QC, and AHJ portal uploads.</li>
+                        <div class="text-blue-600 font-medium mb-1 print:text-black">Omni Technologies LLC</div>
+                        <time class="text-slate-400 text-sm mb-4 block print:text-black">Nov 2024 - Present</time>
+                        <ul class="text-slate-700 text-sm space-y-2 list-disc list-outside ml-4 leading-relaxed">
+                            <li><strong>Team Leadership:</strong> Supervise and manage a team of six inspectors performing annual and semi-annual fire alarm inspections for commercial clients across Wisconsin.</li>
+                            <li><strong>Process Engineering:</strong> Designed and implemented internal web-based tools (Device Checklist, PDF Bookmark Tool, Report Parser) that replaced paper workflows and reduced data entry errors.</li>
+                            <li><strong>Quality Control:</strong> Oversee the full inspection lifecycle, conducting detailed reviews of reports to correct errors and standardize data before client delivery.</li>
+                            <li><strong>Client Interface:</strong> Interface directly with Authorities Having Jurisdiction (AHJs) and portal systems; serve as the primary escalation point for operational and technical issues.</li>
+                            <li><strong>Management:</strong> Lead quarterly team meetings, manage vehicle/equipment audits, and enforce accountability through documented disciplinary actions when required.</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Job 2 -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group print:block print:mb-6">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 print:hidden">
                         <i data-lucide="activity" class="w-5 h-5 text-slate-600"></i>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-200 shadow-sm print-break">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 rounded-xl border border-slate-200 shadow-sm print-break print:w-full print:border-0 print:p-0 print:shadow-none">
                         <h3 class="font-bold text-slate-900 text-lg">Regional Operations Specialist (NOC)</h3>
-                        <div class="text-blue-600 font-medium mb-1">Spectrum Communications</div>
-                        <time class="text-slate-400 text-sm mb-4 block">Oct 2023 - Oct 2024</time>
-                        <ul class="text-slate-600 text-sm space-y-2 list-disc list-outside ml-4">
-                            <li>Monitored network alarms and managed incident response workflows in a high-stakes NOC environment.</li>
-                            <li>Managed Everbridge alerts and outage communications to senior leadership.</li>
-                            <li>Handled Remedy tickets and IRIS event inventories; frequently mentored team members.</li>
+                        <div class="text-blue-600 font-medium mb-1 print:text-black">Spectrum Communications</div>
+                        <time class="text-slate-400 text-sm mb-4 block print:text-black">Oct 2023 - Oct 2024</time>
+                        <ul class="text-slate-700 text-sm space-y-2 list-disc list-outside ml-4 leading-relaxed">
+                            <li><strong>Incident Response:</strong> Monitored network alarms and system alerts in a high-pressure NOC environment, assessing incidents to maintain network stability.</li>
+                            <li><strong>Communication:</strong> Managed Everbridge alerts and critical outage communications to senior leadership—a responsibility typically reserved for senior specialists.</li>
+                            <li><strong>Systems Management:</strong> Managed Remedy tickets and IRIS event inventories, documenting resolution steps and triage outcomes.</li>
+                            <li><strong>Team Collaboration:</strong> Collaborated with experienced team members to learn new systems quickly and frequently assisted or mentored newer staff members.</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Job 3 -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group print:block print:mb-6">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 print:hidden">
                         <i data-lucide="network" class="w-5 h-5 text-slate-600"></i>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-200 shadow-sm print-break">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 rounded-xl border border-slate-200 shadow-sm print-break print:w-full print:border-0 print:p-0 print:shadow-none">
                         <h3 class="font-bold text-slate-900 text-lg">Fiber Assigner / Technical Support</h3>
-                        <div class="text-blue-600 font-medium mb-1">Frontier Communications</div>
-                        <time class="text-slate-400 text-sm mb-4 block">Mar 2016 - Oct 2023</time>
-                        <ul class="text-slate-600 text-sm space-y-2 list-disc list-outside ml-4">
-                            <li>Selected for Attorney General's list due to expertise in fiber assignments and proactive problem-solving.</li>
-                            <li>Acted as primary internal IT support contact, troubleshooting hardware, software, and access issues.</li>
-                            <li>Coordinated fiber optic installations and resolved high-priority escalations.</li>
+                        <div class="text-blue-600 font-medium mb-1 print:text-black">Frontier Communications</div>
+                        <time class="text-slate-400 text-sm mb-4 block print:text-black">Mar 2016 - Oct 2023</time>
+                        <ul class="text-slate-700 text-sm space-y-2 list-disc list-outside ml-4 leading-relaxed">
+                            <li><strong>Technical Coordination:</strong> Coordinated fiber optic installations and service restorations, working directly with field technicians to resolve physical layer issues.</li>
+                            <li><strong>Internal IT Support:</strong> Acted as the primary internal IT support contact for the office, troubleshooting hardware, software, and access issues for colleagues.</li>
+                            <li><strong>Recognition:</strong> Selected for the Attorney General's list due to expertise in fiber assignments and proactive problem-solving.</li>
+                            <li><strong>Reliability:</strong> Became the preferred technical resource following departmental downsizing, remotely resolving issues and maintaining daily operations.</li>
                         </ul>
                     </div>
                 </div>
 
                  <!-- Job 4 -->
-                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group print:block print:mb-6">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 print:hidden">
                         <i data-lucide="store" class="w-5 h-5 text-slate-600"></i>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-200 shadow-sm print-break">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 rounded-xl border border-slate-200 shadow-sm print-break print:w-full print:border-0 print:p-0 print:shadow-none">
                         <h3 class="font-bold text-slate-900 text-lg">Assistant Manager</h3>
-                        <div class="text-blue-600 font-medium mb-1">Family Dollar</div>
-                        <time class="text-slate-400 text-sm mb-4 block">May 2014 - Jan 2016</time>
-                        <ul class="text-slate-600 text-sm space-y-2 list-disc list-outside ml-4">
-                            <li>Led and trained employees to maintain operational efficiency.</li>
-                            <li>Implemented process improvements for productivity and time management.</li>
+                        <div class="text-blue-600 font-medium mb-1 print:text-black">Family Dollar</div>
+                        <time class="text-slate-400 text-sm mb-4 block print:text-black">May 2014 - Jan 2016</time>
+                        <ul class="text-slate-700 text-sm space-y-2 list-disc list-outside ml-4 leading-relaxed">
+                            <li>Managed daily store operations including opening/closing, inventory control, and cash handling.</li>
+                            <li>Led and trained employees to maintain operational efficiency and customer service standards.</li>
                         </ul>
                     </div>
                 </div>
@@ -312,70 +339,70 @@
     </section>
 
     <!-- Skills Grid -->
-    <section id="skills" class="py-20 bg-slate-900 text-white">
+    <section id="skills" class="py-20 bg-slate-900 text-white print:bg-white print:text-black print:py-6">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 flex items-center text-white">
-                <i data-lucide="cpu" class="w-8 h-8 mr-4 text-blue-500"></i>
-                Technical Arsenal
+            <h2 class="text-3xl font-bold mb-12 flex items-center text-white print:text-black print:mb-6">
+                <i data-lucide="cpu" class="w-8 h-8 mr-4 text-blue-500 print:hidden"></i>
+                Technical Skills
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <!-- Category 1 -->
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Networking & Infrastructure</h3>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 print:bg-white print:border-gray-300">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2 print:text-black print:border-gray-300">Networking & Infrastructure</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TCP/IP</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">DHCP & DNS</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">VPN / WAN / LAN</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Subnetting</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Firewall Fundamentals</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">TCP/IP</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">DHCP & DNS</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">VPN / WAN / LAN</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Subnetting</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Firewall Fundamentals</span>
                     </div>
                 </div>
 
                 <!-- Category 2 -->
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Systems & OS</h3>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 print:bg-white print:border-gray-300">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2 print:text-black print:border-gray-300">Systems & OS</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Windows</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Linux</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">macOS</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Active Directory</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">VMware</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">AWS Fundamentals</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Windows</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Linux</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">macOS</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Active Directory</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">VMware</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">AWS Fundamentals</span>
                     </div>
                 </div>
 
                 <!-- Category 3 -->
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Automation & Web</h3>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 print:bg-white print:border-gray-300">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2 print:text-black print:border-gray-300">Automation & Web</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">PowerShell</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">HTML & CSS</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">SQL Basics</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Scripting Logic</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">PowerShell</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Python</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">HTML & CSS</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">SQL Basics</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Scripting Logic</span>
                     </div>
                 </div>
 
                 <!-- Category 4 -->
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Monitoring & Support</h3>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 print:bg-white print:border-gray-300">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2 print:text-black print:border-gray-300">Monitoring & Support</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Incident Escalation</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Remedy Ticketing</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Technical Documentation</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Remote Access Tools</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Incident Escalation</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Remedy Ticketing</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Technical Documentation</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Remote Access Tools</span>
                     </div>
                 </div>
 
                 <!-- Category 5 -->
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Hardware</h3>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 print:bg-white print:border-gray-300">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2 print:text-black print:border-gray-300">Hardware</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Electronics Fundamentals</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Embedded Devices</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Computer Hardware</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Electronics Fundamentals</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Embedded Devices</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm print:bg-gray-100 print:text-black">Computer Hardware</span>
                     </div>
                 </div>
 
@@ -384,27 +411,27 @@
     </section>
 
     <!-- Footer / Contact -->
-    <footer id="contact" class="bg-white border-t border-slate-200 pt-20 pb-10">
+    <footer id="contact" class="bg-white border-t border-slate-200 pt-20 pb-10 print:pt-6">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-slate-900 mb-6">Ready to collaborate?</h2>
-            <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6 print:hidden">Ready to collaborate?</h2>
+            <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto print:hidden">
                 I'm currently based in Waterloo, WI and open to opportunities that leverage my background in technical operations and process automation.
             </p>
             
             <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
-                <a href="mailto:james@drewcassidy.dev" class="flex items-center px-8 py-4 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors shadow-lg">
+                <a href="mailto:james@drewcassidy.dev" class="flex items-center px-8 py-4 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors shadow-lg print:bg-white print:text-black print:border print:border-black print:shadow-none">
                     <i data-lucide="mail" class="w-5 h-5 mr-3"></i>
                     james@drewcassidy.dev
                 </a>
-                <div class="flex items-center px-8 py-4 bg-slate-100 text-slate-900 rounded-lg border border-slate-200">
-                    <i data-lucide="phone" class="w-5 h-5 mr-3 text-blue-600"></i>
+                <div class="flex items-center px-8 py-4 bg-slate-100 text-slate-900 rounded-lg border border-slate-200 print:bg-white print:border-black">
+                    <i data-lucide="phone" class="w-5 h-5 mr-3 text-blue-600 print:text-black"></i>
                     608-301-5321
                 </div>
             </div>
 
-            <div class="text-slate-400 text-sm border-t border-slate-100 pt-8">
+            <div class="text-slate-400 text-sm border-t border-slate-100 pt-8 print:hidden">
                 <p>&copy; <script>document.write(new Date().getFullYear())</script> James Drew Cassidy. All rights reserved.</p>
-                <p class="mt-2">Built with Tailwind CSS & HTML5.</p>
+                <p class="mt-2">Built with Tailwind CSS.</p>
             </div>
         </div>
     </footer>
