@@ -1,411 +1,417 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>James Cassidy — Technical Operations • Automation • IT</title>
-  <meta name="description" content="James Cassidy — Resume, skills, and project showcase." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Drew Cassidy | Technical Operations Professional</title>
+    <meta name="description" content="Portfolio of James Drew Cassidy - Technical Operations Professional specializing in IT support, network operations, and process automation.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-  <style>
-    :root{
-      --bg:#ffffff;
-      --card:#ffffff;
-      --text:#0f1220;
-      --muted:#5a6276;
-      --line:#e7eaf2;
-      --accent:#2b63ff;
-      --max:980px;
-      --radius:14px;
-      --shadow:0 8px 24px rgba(15,18,30,.06);
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
+    <!-- Custom Config for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        blue: {
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--sans);
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.5;
-      letter-spacing:-0.01em;
-    }
-
-    a{color:inherit;text-decoration:none}
-    a:hover{text-decoration:underline;text-underline-offset:3px}
-    :focus-visible{outline:3px solid rgba(43,99,255,.25);outline-offset:2px;border-radius:10px}
-
-    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px}
-    header{
-      position:sticky;top:0;z-index:10;
-      background:rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--line);
-    }
-    .bar{max-width:var(--max);margin:0 auto;padding:14px 18px;display:flex;gap:16px;align-items:center;justify-content:space-between}
-    .name{font-weight:700;letter-spacing:-0.02em}
-    nav{display:flex;gap:14px;flex-wrap:wrap}
-    nav a{color:var(--muted);font-weight:560}
-    nav a:hover{color:var(--text);text-decoration:none}
-
-    .hero{
-      padding:28px 0 10px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:start;
-    }
-    @media (max-width:860px){.hero{grid-template-columns:1fr}}
-
-    h1{
-      margin:0;
-      font-size: clamp(30px, 4vw, 44px);
-      line-height:1.12;
-      letter-spacing:-0.03em;
-    }
-    .lead{margin:10px 0 0;color:var(--muted);max-width:70ch}
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:18px;
-    }
-
-    .quick{
-      display:grid;
-      gap:10px;
-    }
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:#fff;
-      font-weight:650;
-      cursor:pointer;
-    }
-    .btn.primary{
-      border-color:rgba(43,99,255,.22);
-      background:rgba(43,99,255,.06);
-      color:#0f1220;
-    }
-    .btnrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media (max-width:420px){.btnrow{grid-template-columns:1fr}}
-
-    section{margin-top:18px}
-    .section-title{
-      display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-      margin:0 0 10px;
-    }
-    h2{margin:0;font-size:16px;letter-spacing:-0.01em}
-    .small{color:var(--muted);font-size:13px}
-
-    /* Projects */
-    .projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-    @media (max-width:860px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (max-width:560px){.projects{grid-template-columns:1fr}}
-    .proj{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:14px;
-      background:#fff;
-      display:flex;flex-direction:column;gap:8px;
-      min-height:130px;
-    }
-    .proj h3{margin:0;font-size:14px;letter-spacing:-0.01em}
-    .proj p{margin:0;color:var(--muted);font-size:13px}
-    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
-    .tag{
-      font-size:12px;
-      padding:6px 9px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      color:var(--muted);
-      background:#fff;
-    }
-
-    /* Resume */
-    .resume-grid{display:grid;grid-template-columns: 1.2fr .8fr;gap:12px}
-    @media (max-width:860px){.resume-grid{grid-template-columns:1fr}}
-
-    .item{padding:14px 0;border-top:1px solid var(--line)}
-    .item:first-child{border-top:0;padding-top:0}
-    .row{display:flex;gap:12px;align-items:baseline;justify-content:space-between}
-    .role{font-weight:750}
-    .date{color:var(--muted);font-size:13px;white-space:nowrap}
-    .where{margin:6px 0 0;color:var(--muted);font-size:13px}
-    ul{margin:10px 0 0;padding-left:18px}
-    li{margin:6px 0;color:var(--muted);font-size:13px}
-
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{
-      font-size:13px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      color:var(--muted);
-      background:#fff;
-    }
-
-    footer{
-      margin-top:22px;
-      padding-top:16px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      font-size:13px;
-      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
-    }
-
-    @media print{
-      header{display:none !important}
-      .wrap{max-width:none;padding:0}
-      .card{box-shadow:none}
-      a{text-decoration:none}
-    }
-  </style>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Print Styles */
+        @media print {
+            .no-print { display: none !important; }
+            body { color: black; background: white; }
+            a { text-decoration: none; color: black; }
+            .print-break { page-break-inside: avoid; }
+        }
+        
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+        }
+    </style>
 </head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-200 selection:text-blue-900">
 
-<body>
-  <header>
-    <div class="bar">
-      <div class="name">James Cassidy</div>
-      <nav aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#projects">Websites</a>
-        <a href="#resume">Resume</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-slate-700/50 shadow-lg transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 text-white font-bold text-xl tracking-tight">
+                    JDC<span class="text-blue-500">.</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="#projects" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Engineering</a>
+                        <a href="#experience" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
+                        <a href="#skills" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills</a>
+                        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-md hover:shadow-lg">Contact Me</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-700 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-slate-800 border-t border-slate-700" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#projects" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Engineering</a>
+                <a href="#experience" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+                <a href="#skills" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#contact" class="text-blue-400 font-bold block px-3 py-2 rounded-md text-base">Contact Me</a>
+            </div>
+        </div>
+    </nav>
 
-  <main class="wrap">
-    <div class="hero" id="about">
-      <div class="card">
-        <h1>Technical Operations, Automation, and IT support.</h1>
-        <p class="lead">
-          I’m a self-driven technical operations professional with experience across IT support,
-          network operations, technical coordination, and team leadership. I learn systems fast,
-          take ownership of problems, and build practical tools that reduce friction.
-        </p>
-      </div>
-
-      <div class="card quick" aria-label="Quick actions">
-        <div class="section-title">
-          <h2>Quick</h2>
-          <span class="small">simple links</span>
+    <!-- Hero Section -->
+    <section id="about" class="relative bg-slate-900 text-white pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-600 blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-teal-600 blur-3xl"></div>
         </div>
 
-        <div class="btnrow">
-          <a class="btn primary" href="mailto:james@drewcassidy.dev">Email</a>
-          <a class="btn" href="tel:+16083015321">Call</a>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-sm font-medium mb-6">
+                        <span class="flex h-2 w-2 rounded-full bg-green-400 mr-2 animate-pulse"></span>
+                        Available for Technical Operations Roles
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                        James Drew <span class="text-blue-500">Cassidy</span>
+                    </h1>
+                    <p class="text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl">
+                        Technical Operations Professional bridging the gap between IT infrastructure and process automation. I learn systems quickly, take ownership of complex problems, and build practical tools that improve efficiency.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500">
+                            <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
+                            Get in Touch
+                        </a>
+                        <a href="javascript:window.print()" class="inline-flex items-center px-6 py-3 border border-slate-600 text-base font-medium rounded-lg text-slate-200 bg-transparent hover:bg-slate-800 transition-all">
+                            <i data-lucide="file-text" class="w-5 h-5 mr-2"></i>
+                            Print Resume
+                        </a>
+                    </div>
+
+                    <div class="mt-10 flex flex-wrap gap-6 text-slate-400 text-sm font-medium">
+                        <div class="flex items-center">
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-blue-500"></i>
+                            Waterloo, WI
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="monitor" class="w-4 h-4 mr-2 text-blue-500"></i>
+                            IT Operations & Support
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="code" class="w-4 h-4 mr-2 text-blue-500"></i>
+                            Automation & Scripting
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- "Terminal" style summary card -->
+                <div class="hidden lg:block">
+                    <div class="bg-slate-800 rounded-xl border border-slate-700 shadow-2xl overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <div class="bg-slate-900 px-4 py-3 border-b border-slate-700 flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-2 text-xs text-slate-500 font-mono">summary.txt</span>
+                        </div>
+                        <div class="p-6 font-mono text-sm text-slate-300 leading-relaxed">
+                            <p class="mb-4"><span class="text-blue-400">const</span> <span class="text-yellow-300">professionalSummary</span> = {</p>
+                            <div class="pl-4 border-l-2 border-slate-700 space-y-2">
+                                <p><span class="text-purple-400">role:</span> <span class="text-green-400">"Technical Operations Professional"</span>,</p>
+                                <p><span class="text-purple-400">strengths:</span> [<span class="text-green-400">"Process Automation"</span>, <span class="text-green-400">"Network Ops"</span>, <span class="text-green-400">"Leadership"</span>],</p>
+                                <p><span class="text-purple-400">philosophy:</span> <span class="text-green-400">"Known for learning new systems quickly and improving processes through practical tools."</span>,</p>
+                                <p><span class="text-purple-400">status:</span> <span class="text-green-400">"Ready to deploy"</span></p>
+                            </div>
+                            <p class="mt-4">};</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="btnrow">
-          <button class="btn" type="button" onclick="window.print()">Print</button>
-          <a class="btn" href="./JamesCassidyResume.pdf" download>Download PDF</a>
-        </div>
-
-        <div class="small">
-          Waterloo, WI • Authorized to work in the U.S.
-        </div>
-      </div>
-    </div>
-
-    <section class="card" id="projects">
-      <div class="section-title">
-        <h2>Website / tool showcase</h2>
-        <span class="small">add links later</span>
-      </div>
-
-      <div class="projects">
-        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
-          <h3>Digital Device Checklist</h3>
-          <p>Replaces paper checks with a workflow that’s easier to track and maintain.</p>
-          <div class="tags">
-            <span class="tag">Ops</span><span class="tag">Process</span><span class="tag">UX</span>
-          </div>
-        </a>
-
-        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
-          <h3>PDF Bookmarking Helper</h3>
-          <p>Generates clean bookmarks for long PDFs and reports.</p>
-          <div class="tags">
-            <span class="tag">Automation</span><span class="tag">Quality</span><span class="tag">Speed</span>
-          </div>
-        </a>
-
-        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
-          <h3>Ops Dashboard</h3>
-          <p>A lightweight dashboard for status, queues, and visibility.</p>
-          <div class="tags">
-            <span class="tag">Triage</span><span class="tag">Metrics</span><span class="tag">UI</span>
-          </div>
-        </a>
-
-        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
-          <h3>Internal Knowledge Base</h3>
-          <p>Short reference pages that reduce repeat questions and improve consistency.</p>
-          <div class="tags">
-            <span class="tag">Docs</span><span class="tag">Standards</span><span class="tag">Onboarding</span>
-          </div>
-        </a>
-
-        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
-          <h3>Tooling Playground</h3>
-          <p>Small utilities and experiments that become real tools.</p>
-          <div class="tags">
-            <span class="tag">PowerShell</span><span class="tag">Python</span><span class="tag">Web</span>
-          </div>
-        </a>
-
-        <div class="proj" aria-label="Placeholder project">
-          <h3>Next project</h3>
-          <p>Replace this card with your next site.</p>
-          <div class="tags">
-            <span class="tag">Link</span><span class="tag">Tag</span><span class="tag">Tag</span>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <section class="resume-grid" id="resume">
-      <div class="card">
-        <div class="section-title">
-          <h2>Experience</h2>
-          <span class="small">clean visual</span>
-        </div>
+    <!-- Engineering & Automation Highlights -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Engineering & Automation</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+                    Beyond standard operations, I design and implement internal tools to eliminate bottlenecks and standardize quality.
+                </p>
+            </div>
 
-        <div class="item">
-          <div class="row">
-            <div class="role">Inspections Coordinator</div>
-            <div class="date">Nov 2024 — Present</div>
-          </div>
-          <div class="where">Omni Technologies LLC • Oregon, WI</div>
-          <ul>
-            <li>Supervise and manage a team of six inspectors performing annual and semi-annual fire alarm inspections across Wisconsin.</li>
-            <li>Coordinate scheduling, training, mentoring, and performance oversight to ensure consistent quality and compliance.</li>
-            <li>Oversee the full inspection lifecycle: logistics, customer communication, and quality control.</li>
-            <li>Review inspection reports, correct errors, standardize data, and ensure consistent documentation.</li>
-            <li>Designed internal web tools including a digital device checklist and a PDF bookmarking helper.</li>
-          </ul>
-        </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="smartphone" class="w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Digital Device Checklist</h3>
+                    <p class="text-slate-600 mb-4">
+                        Replaced error-prone paper reports with a streamlined digital interface for field inspectors.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Reduced data entry errors</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Improved compliance speed</li>
+                    </ul>
+                </div>
 
-        <div class="item">
-          <div class="row">
-            <div class="role">Regional Operations Specialist (Network Operations Center)</div>
-            <div class="date">Oct 2023 — Oct 2024</div>
-          </div>
-          <div class="where">Spectrum Communications • Madison, WI</div>
-          <ul>
-            <li>Monitored network alarms and system alerts; assessed incidents and determined response actions.</li>
-            <li>Managed incident workflows: triage, escalation, documentation, resolution tracking.</li>
-            <li>Managed Everbridge alerts and outage communications to senior leadership.</li>
-            <li>Managed Remedy tickets and IRIS event inventories; frequently assumed responsibilities beyond typical scope.</li>
-          </ul>
-        </div>
+                <!-- Project 2 -->
+                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="file-code" class="w-6 h-6 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Automated PDF Tooling</h3>
+                    <p class="text-slate-600 mb-4">
+                        Created a custom tool for automated PDF bookmarking and report navigation.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Accelerates report review</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Enhances client deliverable quality</li>
+                    </ul>
+                </div>
 
-        <div class="item">
-          <div class="row">
-            <div class="role">Fiber Assigner / Technical Support Specialist</div>
-            <div class="date">Mar 2016 — Oct 2023</div>
-          </div>
-          <div class="where">Frontier Communications • Sun Prairie, WI</div>
-          <ul>
-            <li>Coordinated fiber optic installations and restorations; partnered with field techs to resolve technical issues.</li>
-            <li>Served on escalations team handling high-priority, complex issues to minimize disruptions.</li>
-            <li>Acted as internal IT support: hardware/software/access/system troubleshooting.</li>
-            <li>Recognized for proactive problem-solving; multiple awards for reliability/performance.</li>
-          </ul>
+                <!-- Project 3 -->
+                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="mail-check" class="w-6 h-6 text-teal-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Report Parser & Emailer</h3>
+                    <p class="text-slate-600 mb-4">
+                        A parser that extracts failed device summaries and auto-generates customer email templates.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Standardized client communication</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-green-500"></i> Drastically reduced admin time</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-        <div class="item">
-          <div class="row">
-            <div class="role">Assistant Manager</div>
-            <div class="date">May 2014 — Jan 2016</div>
-          </div>
-          <div class="where">Family Dollar • Madison, WI</div>
-          <ul>
-            <li>Managed daily operations: opening/closing, inventory control, cash handling.</li>
-            <li>Led and trained employees; implemented process improvements for productivity and time management.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="section-title">
-          <h2>Skills</h2>
-          <span class="small">easy to scan</span>
-        </div>
-
-        <div class="small" style="margin:0 0 10px;color:var(--muted)">Operating Systems</div>
-        <div class="chips" style="margin-bottom:14px">
-          <span class="chip">Windows</span><span class="chip">Linux</span><span class="chip">macOS</span>
-        </div>
-
-        <div class="small" style="margin:0 0 10px;color:var(--muted)">Networking</div>
-        <div class="chips" style="margin-bottom:14px">
-          <span class="chip">TCP/IP</span><span class="chip">DHCP</span><span class="chip">DNS</span>
-          <span class="chip">VPN</span><span class="chip">LAN/WAN</span><span class="chip">Subnetting</span>
-        </div>
-
-        <div class="small" style="margin:0 0 10px;color:var(--muted)">Systems & Support</div>
-        <div class="chips" style="margin-bottom:14px">
-          <span class="chip">Active Directory</span><span class="chip">Troubleshooting</span>
-          <span class="chip">Monitoring</span><span class="chip">Incident Escalation</span><span class="chip">Documentation</span>
-        </div>
-
-        <div class="small" style="margin:0 0 10px;color:var(--muted)">Automation & Web</div>
-        <div class="chips" style="margin-bottom:14px">
-          <span class="chip">PowerShell</span><span class="chip">Python</span><span class="chip">HTML</span>
-          <span class="chip">CSS</span><span class="chip">SQL Basics</span>
-        </div>
-
-        <div class="small" style="margin:0 0 10px;color:var(--muted)">Platforms & Hardware</div>
-        <div class="chips" style="margin-bottom:14px">
-          <span class="chip">VMware</span><span class="chip">AWS Fundamentals</span>
-          <span class="chip">Hardware</span><span class="chip">Embedded Devices</span><span class="chip">Remote Tools</span>
-        </div>
-
-        <div class="small" style="margin:0 0 10px;color:var(--muted)">Education</div>
-        <div class="chips">
-          <span class="chip">High School Diploma — Penn Foster</span>
-        </div>
-      </div>
     </section>
 
-    <section class="card" id="contact">
-      <div class="section-title">
-        <h2>Contact</h2>
-        <span class="small">direct</span>
-      </div>
+    <!-- Professional Experience -->
+    <section id="experience" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 flex items-center">
+                <i data-lucide="briefcase" class="w-8 h-8 mr-4 text-blue-600"></i>
+                Professional Experience
+            </h2>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div>
-          <div class="small">Email</div>
-          <div style="margin-top:6px;font-weight:650">
-            <a href="mailto:james@drewcassidy.dev">james@drewcassidy.dev</a>
-          </div>
+            <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                
+                <!-- Job 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-blue-600 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-200 shadow-sm print-break">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-slate-900 text-lg">Inspections Coordinator</h3>
+                            <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded">Current</span>
+                        </div>
+                        <div class="text-blue-600 font-medium mb-1">Omni Technologies LLC</div>
+                        <time class="text-slate-400 text-sm mb-4 block">Nov 2024 - Present</time>
+                        <ul class="text-slate-600 text-sm space-y-2 list-disc list-outside ml-4">
+                            <li>Supervise a team of six inspectors performing commercial fire alarm inspections across Wisconsin.</li>
+                            <li>Designed internal web-based tools (Device Checklist, PDF Bookmark Tool) to improve operational efficiency.</li>
+                            <li>Serve as escalation point for technical issues, applying structured troubleshooting.</li>
+                            <li>Oversee full inspection lifecycle: logistics, QC, and AHJ portal uploads.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <i data-lucide="activity" class="w-5 h-5 text-slate-600"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-200 shadow-sm print-break">
+                        <h3 class="font-bold text-slate-900 text-lg">Regional Operations Specialist (NOC)</h3>
+                        <div class="text-blue-600 font-medium mb-1">Spectrum Communications</div>
+                        <time class="text-slate-400 text-sm mb-4 block">Oct 2023 - Oct 2024</time>
+                        <ul class="text-slate-600 text-sm space-y-2 list-disc list-outside ml-4">
+                            <li>Monitored network alarms and managed incident response workflows in a high-stakes NOC environment.</li>
+                            <li>Managed Everbridge alerts and outage communications to senior leadership.</li>
+                            <li>Handled Remedy tickets and IRIS event inventories; frequently mentored team members.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <i data-lucide="network" class="w-5 h-5 text-slate-600"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-200 shadow-sm print-break">
+                        <h3 class="font-bold text-slate-900 text-lg">Fiber Assigner / Technical Support</h3>
+                        <div class="text-blue-600 font-medium mb-1">Frontier Communications</div>
+                        <time class="text-slate-400 text-sm mb-4 block">Mar 2016 - Oct 2023</time>
+                        <ul class="text-slate-600 text-sm space-y-2 list-disc list-outside ml-4">
+                            <li>Selected for Attorney General's list due to expertise in fiber assignments and proactive problem-solving.</li>
+                            <li>Acted as primary internal IT support contact, troubleshooting hardware, software, and access issues.</li>
+                            <li>Coordinated fiber optic installations and resolved high-priority escalations.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <!-- Job 4 -->
+                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <i data-lucide="store" class="w-5 h-5 text-slate-600"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-200 shadow-sm print-break">
+                        <h3 class="font-bold text-slate-900 text-lg">Assistant Manager</h3>
+                        <div class="text-blue-600 font-medium mb-1">Family Dollar</div>
+                        <time class="text-slate-400 text-sm mb-4 block">May 2014 - Jan 2016</time>
+                        <ul class="text-slate-600 text-sm space-y-2 list-disc list-outside ml-4">
+                            <li>Led and trained employees to maintain operational efficiency.</li>
+                            <li>Implemented process improvements for productivity and time management.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div>
-          <div class="small">Phone</div>
-          <div style="margin-top:6px;font-weight:650">
-            <a href="tel:+16083015321">608-301-5321</a>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <footer>
-      <div>© <span id="y"></span> James Cassidy</div>
-      <div>Built as a single HTML file</div>
+    <!-- Skills Grid -->
+    <section id="skills" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 flex items-center text-white">
+                <i data-lucide="cpu" class="w-8 h-8 mr-4 text-blue-500"></i>
+                Technical Arsenal
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Category 1 -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Networking & Infrastructure</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TCP/IP</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">DHCP & DNS</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">VPN / WAN / LAN</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Subnetting</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Firewall Fundamentals</span>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Systems & OS</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Windows</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Linux</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">macOS</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Active Directory</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">VMware</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">AWS Fundamentals</span>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Automation & Web</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">PowerShell</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">HTML & CSS</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">SQL Basics</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Scripting Logic</span>
+                    </div>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Monitoring & Support</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Incident Escalation</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Remedy Ticketing</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Technical Documentation</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Remote Access Tools</span>
+                    </div>
+                </div>
+
+                <!-- Category 5 -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2">Hardware</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Electronics Fundamentals</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Embedded Devices</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Computer Hardware</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-white border-t border-slate-200 pt-20 pb-10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Ready to collaborate?</h2>
+            <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
+                I'm currently based in Waterloo, WI and open to opportunities that leverage my background in technical operations and process automation.
+            </p>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
+                <a href="mailto:james@drewcassidy.dev" class="flex items-center px-8 py-4 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors shadow-lg">
+                    <i data-lucide="mail" class="w-5 h-5 mr-3"></i>
+                    james@drewcassidy.dev
+                </a>
+                <div class="flex items-center px-8 py-4 bg-slate-100 text-slate-900 rounded-lg border border-slate-200">
+                    <i data-lucide="phone" class="w-5 h-5 mr-3 text-blue-600"></i>
+                    608-301-5321
+                </div>
+            </div>
+
+            <div class="text-slate-400 text-sm border-t border-slate-100 pt-8">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> James Drew Cassidy. All rights reserved.</p>
+                <p class="mt-2">Built with Tailwind CSS & HTML5.</p>
+            </div>
+        </div>
     </footer>
-  </main>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+    <!-- Init Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
