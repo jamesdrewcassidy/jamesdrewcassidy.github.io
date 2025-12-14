@@ -2,38 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>James Cassidy — Technical Operations • Automation • IT</title>
-  <meta name="description" content="James Cassidy — Technical operations, automation, network operations, and web tooling. Resume, projects, and contact." />
+  <meta name="description" content="James Cassidy — Resume, skills, and project showcase." />
 
   <style>
     :root{
-      --bg:#0b0c0f;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.09);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.66);
-      --hair:rgba(255,255,255,.10);
-      --accent:#7aa2ff;
-      --accent2:#7affc1;
-      --shadow:0 12px 30px rgba(0,0,0,.45);
-      --radius:18px;
-      --radius2:26px;
-      --max:1120px;
-      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
-    }
-    [data-theme="light"]{
-      --bg:#f6f7fb;
-      --panel:rgba(15,18,30,.05);
-      --panel2:rgba(15,18,30,.07);
-      --text:rgba(15,18,30,.92);
-      --muted:rgba(15,18,30,.64);
-      --hair:rgba(15,18,30,.12);
+      --bg:#ffffff;
+      --card:#ffffff;
+      --text:#0f1220;
+      --muted:#5a6276;
+      --line:#e7eaf2;
       --accent:#2b63ff;
-      --accent2:#1aa36a;
-      --shadow:0 12px 30px rgba(15,18,30,.14);
+      --max:980px;
+      --radius:14px;
+      --shadow:0 8px 24px rgba(15,18,30,.06);
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
     *{box-sizing:border-box}
@@ -42,736 +27,385 @@
       margin:0;
       font-family:var(--sans);
       color:var(--text);
-      background:
-        radial-gradient(1200px 900px at 20% 0%, rgba(122,162,255,.20), transparent 55%),
-        radial-gradient(900px 700px at 85% 10%, rgba(122,255,193,.14), transparent 55%),
-        radial-gradient(900px 700px at 60% 85%, rgba(122,162,255,.10), transparent 55%),
-        var(--bg);
-      line-height:1.45;
+      background:var(--bg);
+      line-height:1.5;
       letter-spacing:-0.01em;
     }
 
     a{color:inherit;text-decoration:none}
     a:hover{text-decoration:underline;text-underline-offset:3px}
-    :focus-visible{outline:3px solid rgba(122,162,255,.35);outline-offset:2px}
+    :focus-visible{outline:3px solid rgba(43,99,255,.25);outline-offset:2px;border-radius:10px}
 
-    .skip{
-      position:absolute;left:-999px;top:12px;
-      background:var(--text);color:var(--bg);
-      padding:10px 12px;border-radius:12px;z-index:9999
-    }
-    .skip:focus{left:12px;outline:none}
-
-    .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px}
     header{
-      position:sticky;top:0;z-index:40;
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-      background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
-      border-bottom:1px solid transparent;
+      position:sticky;top:0;z-index:10;
+      background:rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
     }
-    [data-theme="light"] header{
-      background:linear-gradient(to bottom, rgba(246,247,251,.70), rgba(246,247,251,0));
-    }
-
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
-    .brand{display:inline-flex;align-items:center;gap:10px;font-weight:650;letter-spacing:-0.02em;white-space:nowrap}
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      background:radial-gradient(circle at 30% 30%, var(--accent2), var(--accent));
-      box-shadow:0 0 0 3px rgba(122,162,255,.18);
-    }
-
-    nav ul{list-style:none;padding:0;margin:0;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-    nav a{color:var(--muted);padding:8px 10px;border-radius:12px}
-    nav a:hover{color:var(--text);background:var(--panel);text-decoration:none}
-
-    .actions{display:inline-flex;gap:10px;align-items:center}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:10px 12px;border-radius:14px;
-      border:1px solid var(--hair);background:var(--panel);
-      color:var(--text);cursor:pointer;font-weight:560;
-      -webkit-tap-highlight-color:transparent;
-    }
-    .btn:hover{background:var(--panel2)}
-    .btn.primary{
-      border-color:transparent;
-      background:linear-gradient(135deg, rgba(122,162,255,.95), rgba(122,255,193,.75));
-      color:#0b0c0f;
-      box-shadow:0 14px 35px rgba(0,0,0,.25);
-    }
-
-    main{padding:28px 0 80px}
+    .bar{max-width:var(--max);margin:0 auto;padding:14px 18px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .name{font-weight:700;letter-spacing:-0.02em}
+    nav{display:flex;gap:14px;flex-wrap:wrap}
+    nav a{color:var(--muted);font-weight:560}
+    nav a:hover{color:var(--text);text-decoration:none}
 
     .hero{
+      padding:28px 0 10px;
       display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:22px;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
       align-items:start;
-      padding-top:18px;
     }
-    @media (max-width:920px){.hero{grid-template-columns:1fr}}
-
-    .card{
-      border:1px solid var(--hair);
-      background:var(--panel);
-      border-radius:var(--radius2);
-      box-shadow:var(--shadow);
-    }
-    .hero .left{padding:26px}
-    .hero .right{padding:22px}
-
-    .eyebrow{
-      display:inline-flex;gap:8px;align-items:center;
-      padding:7px 10px;border-radius:999px;
-      border:1px solid var(--hair);
-      background:rgba(0,0,0,.08);
-      color:var(--muted);font-size:13px;
-    }
-    [data-theme="light"] .eyebrow{background:rgba(255,255,255,.55)}
+    @media (max-width:860px){.hero{grid-template-columns:1fr}}
 
     h1{
-      margin:14px 0 10px;
-      font-size:clamp(34px, 5vw, 54px);
-      line-height:1.02;
-      letter-spacing:-0.04em;
+      margin:0;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height:1.12;
+      letter-spacing:-0.03em;
     }
-    .sub{margin:0 0 18px;font-size:16px;color:var(--muted);max-width:65ch}
+    .lead{margin:10px 0 0;color:var(--muted);max-width:70ch}
 
-    .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;border:1px solid var(--hair);
-      border-radius:999px;background:rgba(0,0,0,.10);
-      color:var(--muted);font-size:14px;
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
     }
-    [data-theme="light"] .pill{background:rgba(255,255,255,.55)}
 
-    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
-    @media (max-width:560px){.grid2{grid-template-columns:1fr}}
-
-    .mini{
-      padding:14px;border-radius:var(--radius);
-      border:1px solid var(--hair);
-      background:rgba(0,0,0,.08);
+    .quick{
+      display:grid;
+      gap:10px;
     }
-    [data-theme="light"] .mini{background:rgba(255,255,255,.55)}
-    .mini b{display:block;font-weight:650;margin-bottom:6px}
-    .mini p{margin:0;color:var(--muted);font-size:14px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-weight:650;
+      cursor:pointer;
+    }
+    .btn.primary{
+      border-color:rgba(43,99,255,.22);
+      background:rgba(43,99,255,.06);
+      color:#0f1220;
+    }
+    .btnrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:420px){.btnrow{grid-template-columns:1fr}}
 
-    section{margin-top:26px}
-    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
-    h2{margin:0;font-size:18px;letter-spacing:-0.02em}
-    .hint{color:var(--muted);font-size:13px}
+    section{margin-top:18px}
+    .section-title{
+      display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+      margin:0 0 10px;
+    }
+    h2{margin:0;font-size:16px;letter-spacing:-0.01em}
+    .small{color:var(--muted);font-size:13px}
 
+    /* Projects */
     .projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-    @media (max-width:980px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (max-width:620px){.projects{grid-template-columns:1fr}}
-
+    @media (max-width:860px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:560px){.projects{grid-template-columns:1fr}}
     .proj{
-      padding:16px;border-radius:var(--radius);
-      border:1px solid var(--hair);
-      background:rgba(0,0,0,.08);
-      transition:transform .25s ease, background .25s ease;
-      min-height:154px;
-      display:flex;flex-direction:column;gap:10px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+      background:#fff;
+      display:flex;flex-direction:column;gap:8px;
+      min-height:130px;
     }
-    [data-theme="light"] .proj{background:rgba(255,255,255,.55)}
-    .proj:hover{transform:translateY(-2px);background:rgba(0,0,0,.12)}
-    [data-theme="light"] .proj:hover{background:rgba(255,255,255,.75)}
-    .proj .top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-    .proj h3{margin:0;font-size:15px;letter-spacing:-0.01em}
-    .proj p{margin:0;color:var(--muted);font-size:14px}
+    .proj h3{margin:0;font-size:14px;letter-spacing:-0.01em}
+    .proj p{margin:0;color:var(--muted);font-size:13px}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
     .tag{
-      font-size:12px;padding:6px 9px;border-radius:999px;
-      border:1px solid var(--hair);
-      color:var(--muted);background:rgba(0,0,0,.08);
-    }
-    [data-theme="light"] .tag{background:rgba(255,255,255,.55)}
-
-    .resume{display:grid;grid-template-columns:1fr .9fr;gap:12px}
-    @media (max-width:980px){.resume{grid-template-columns:1fr}}
-
-    .timeline{padding:18px}
-    .timeline-item{padding:14px 0;border-top:1px solid var(--hair)}
-    .timeline-item:first-child{border-top:0;padding-top:0}
-    .role{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-    .role b{font-weight:680}
-    .role span{color:var(--muted);font-size:13px;white-space:nowrap}
-    .where{color:var(--muted);margin-top:6px;font-size:14px}
-    .bullets{margin:10px 0 0;padding-left:18px;color:var(--muted)}
-    .bullets li{margin:6px 0}
-
-    .skills{padding:18px}
-    .skills .box{
-      padding:14px;border-radius:var(--radius);
-      border:1px solid var(--hair);
-      background:rgba(0,0,0,.08);
-      margin-bottom:10px;
-    }
-    [data-theme="light"] .skills .box{background:rgba(255,255,255,.55)}
-    .skills .box b{display:block;margin-bottom:8px}
-    .skills .box .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{
-      padding:7px 10px;border-radius:999px;
-      border:1px solid var(--hair);
-      background:rgba(0,0,0,.07);
-      color:var(--muted);font-size:13px;
-    }
-    [data-theme="light"] .chip{background:rgba(255,255,255,.55)}
-    .mono{font-family:var(--mono)}
-
-    /* subtle pro extras (not annoying) */
-    .kbd{
-      font-family:var(--mono);
       font-size:12px;
-      padding:4px 7px;
-      border-radius:10px;
-      border:1px solid var(--hair);
-      background:rgba(0,0,0,.10);
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid var(--line);
       color:var(--muted);
+      background:#fff;
     }
-    [data-theme="light"] .kbd{background:rgba(255,255,255,.55)}
+
+    /* Resume */
+    .resume-grid{display:grid;grid-template-columns: 1.2fr .8fr;gap:12px}
+    @media (max-width:860px){.resume-grid{grid-template-columns:1fr}}
+
+    .item{padding:14px 0;border-top:1px solid var(--line)}
+    .item:first-child{border-top:0;padding-top:0}
+    .row{display:flex;gap:12px;align-items:baseline;justify-content:space-between}
+    .role{font-weight:750}
+    .date{color:var(--muted);font-size:13px;white-space:nowrap}
+    .where{margin:6px 0 0;color:var(--muted);font-size:13px}
+    ul{margin:10px 0 0;padding-left:18px}
+    li{margin:6px 0;color:var(--muted);font-size:13px}
+
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background:#fff;
+    }
 
     footer{
-      margin-top:28px;
-      padding:18px 0 0;
+      margin-top:22px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
       color:var(--muted);
-      border-top:1px solid var(--hair);
-      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
-    }
-
-    /* reveal */
-    .reveal{opacity:0;transform:translateY(6px);transition:opacity .6s ease, transform .6s ease}
-    .reveal.in{opacity:1;transform:translateY(0)}
-
-    @media (prefers-reduced-motion:reduce){
-      .proj,.reveal{transition:none !important;transform:none !important}
-      html:focus-within{scroll-behavior:auto}
+      font-size:13px;
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
     }
 
     @media print{
-      header,.no-print{display:none !important}
-      body{background:#fff !important;color:#111 !important}
-      .card,.proj,.mini,.skills .box{box-shadow:none !important;background:#fff !important}
-      a{text-decoration:none !important}
+      header{display:none !important}
       .wrap{max-width:none;padding:0}
-      main{padding:0}
-      .hero{grid-template-columns:1fr}
-      .resume{grid-template-columns:1fr}
+      .card{box-shadow:none}
+      a{text-decoration:none}
     }
   </style>
-
-  <script>
-    (() => {
-      const key="theme";
-      const saved=localStorage.getItem(key);
-      if(saved){
-        document.documentElement.dataset.theme=saved;
-      } else {
-        const prefersLight=window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-        document.documentElement.dataset.theme=prefersLight?"light":"dark";
-      }
-    })();
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"James Cassidy",
-    "address":{"@type":"PostalAddress","addressLocality":"Waterloo","addressRegion":"WI","postalCode":"53594"},
-    "email":"mailto:james@drewcassidy.dev",
-    "telephone":"+1-608-301-5321",
-    "knowsAbout":[
-      "Technical Operations","Automation","Network Operations","IT Support","Web Tooling","Troubleshooting","Documentation"
-    ]
-  }
-  </script>
 </head>
 
 <body>
-  <a class="skip" href="#content">Skip to content</a>
-
   <header>
-    <div class="wrap">
-      <div class="nav">
-        <div class="brand" aria-label="Site brand">
-          <span class="dot" aria-hidden="true"></span>
-          <span>James Cassidy</span>
-        </div>
-
-        <nav aria-label="Primary navigation">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Websites</a></li>
-            <li><a href="#resume">Resume</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-
-        <div class="actions no-print">
-          <button class="btn" id="themeBtn" type="button" aria-label="Toggle theme">
-            <span aria-hidden="true">◐</span><span>Theme</span>
-          </button>
-          <a class="btn primary" href="#contact">Reach out</a>
-        </div>
-      </div>
+    <div class="bar">
+      <div class="name">James Cassidy</div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Websites</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main id="content">
-    <div class="wrap">
-      <!-- HERO -->
-      <div class="hero">
-        <div class="card left reveal" id="about">
-          <span class="eyebrow">Technical Operations • Automation • IT / Networking</span>
+  <main class="wrap">
+    <div class="hero" id="about">
+      <div class="card">
+        <h1>Technical Operations, Automation, and IT support.</h1>
+        <p class="lead">
+          I’m a self-driven technical operations professional with experience across IT support,
+          network operations, technical coordination, and team leadership. I learn systems fast,
+          take ownership of problems, and build practical tools that reduce friction.
+        </p>
+      </div>
 
-          <h1>Hands-on ops + tooling.<br/>Calm under pressure.</h1>
-
-          <p class="sub">
-            I’m a self-driven technical operations professional with experience across IT support,
-            network operations, technical coordination, and team leadership. I learn systems fast,
-            take ownership of complex problems, and build practical tools that remove friction.
-          </p>
-
-          <div class="meta">
-            <span class="pill" title="Location">📍 Waterloo, WI</span>
-            <span class="pill" title="Work authorization">✅ Authorized to work in the U.S.</span>
-            <span class="pill" title="Core traits">🧠 Troubleshooting • Documentation • Process</span>
-          </div>
-
-          <div class="grid2">
-            <div class="mini">
-              <b>What I’m known for</b>
-              <p>Owning ambiguous problems end-to-end — triage, fix, prevent, document.</p>
-            </div>
-            <div class="mini">
-              <b>How I build</b>
-              <p>Simple, durable, user-first tools — the kind teams actually adopt.</p>
-            </div>
-          </div>
-
-          <div style="margin-top:14px" class="hint">
-            Power move: press <span class="kbd">/</span> to jump to search. (Try it.)
-          </div>
+      <div class="card quick" aria-label="Quick actions">
+        <div class="section-title">
+          <h2>Quick</h2>
+          <span class="small">simple links</span>
         </div>
 
-        <div class="card right reveal">
-          <div class="section-head">
-            <h2>Quick links</h2>
-            <div class="hint">Fast, practical</div>
+        <div class="btnrow">
+          <a class="btn primary" href="mailto:james@drewcassidy.dev">Email</a>
+          <a class="btn" href="tel:+16083015321">Call</a>
+        </div>
+
+        <div class="btnrow">
+          <button class="btn" type="button" onclick="window.print()">Print</button>
+          <a class="btn" href="./JamesCassidyResume.pdf" download>Download PDF</a>
+        </div>
+
+        <div class="small">
+          Waterloo, WI • Authorized to work in the U.S.
+        </div>
+      </div>
+    </div>
+
+    <section class="card" id="projects">
+      <div class="section-title">
+        <h2>Website / tool showcase</h2>
+        <span class="small">add links later</span>
+      </div>
+
+      <div class="projects">
+        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
+          <h3>Digital Device Checklist</h3>
+          <p>Replaces paper checks with a workflow that’s easier to track and maintain.</p>
+          <div class="tags">
+            <span class="tag">Ops</span><span class="tag">Process</span><span class="tag">UX</span>
           </div>
+        </a>
 
-          <div class="grid2">
-            <a class="btn" href="mailto:james@drewcassidy.dev" style="justify-content:flex-start">
-              <span aria-hidden="true">✉️</span><span>Email</span>
-            </a>
-            <button class="btn" id="copyEmail" type="button" style="justify-content:flex-start">
-              <span aria-hidden="true">📋</span><span>Copy email</span>
-            </button>
-            <a class="btn" href="tel:+16083015321" style="justify-content:flex-start">
-              <span aria-hidden="true">📞</span><span>Call</span>
-            </a>
-            <button class="btn" type="button" onclick="window.print()" style="justify-content:flex-start">
-              <span aria-hidden="true">🖨️</span><span>Print resume</span>
-            </button>
+        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
+          <h3>PDF Bookmarking Helper</h3>
+          <p>Generates clean bookmarks for long PDFs and reports.</p>
+          <div class="tags">
+            <span class="tag">Automation</span><span class="tag">Quality</span><span class="tag">Speed</span>
           </div>
+        </a>
 
-          <section style="margin-top:16px">
-            <div class="section-head">
-              <h2>What I do</h2>
-              <div class="hint">In plain English</div>
-            </div>
+        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
+          <h3>Ops Dashboard</h3>
+          <p>A lightweight dashboard for status, queues, and visibility.</p>
+          <div class="tags">
+            <span class="tag">Triage</span><span class="tag">Metrics</span><span class="tag">UI</span>
+          </div>
+        </a>
 
-            <div class="mini">
-              <b>Reduce chaos → increase clarity</b>
-              <p>
-                I turn messy workflows into clean, repeatable systems: better tooling, better notes,
-                fewer “tribal knowledge” dependencies, and smoother handoffs.
-              </p>
-            </div>
-          </section>
+        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
+          <h3>Internal Knowledge Base</h3>
+          <p>Short reference pages that reduce repeat questions and improve consistency.</p>
+          <div class="tags">
+            <span class="tag">Docs</span><span class="tag">Standards</span><span class="tag">Onboarding</span>
+          </div>
+        </a>
 
-          <!-- micro-search (pro feature, non-annoying) -->
-          <section style="margin-top:14px">
-            <div class="section-head">
-              <h2>Find anything</h2>
-              <div class="hint">Search this page</div>
-            </div>
-            <div class="mini" style="display:flex;gap:10px;align-items:center">
-              <input id="siteSearch" type="search" placeholder="Search skills, roles, tools…" autocomplete="off"
-                style="flex:1; padding:12px 12px; border-radius:14px; border:1px solid var(--hair); background:transparent; color:var(--text);"
-                aria-label="Search the page"
-              />
-              <button class="btn" id="clearSearch" type="button">Clear</button>
-            </div>
-            <p id="searchHint" class="hint" style="margin:10px 0 0"></p>
-          </section>
+        <a class="proj" href="#" target="_blank" rel="noreferrer noopener">
+          <h3>Tooling Playground</h3>
+          <p>Small utilities and experiments that become real tools.</p>
+          <div class="tags">
+            <span class="tag">PowerShell</span><span class="tag">Python</span><span class="tag">Web</span>
+          </div>
+        </a>
 
-          <p id="toast" role="status" aria-live="polite" style="margin:10px 0 0; color:var(--muted); font-size:13px;"></p>
+        <div class="proj" aria-label="Placeholder project">
+          <h3>Next project</h3>
+          <p>Replace this card with your next site.</p>
+          <div class="tags">
+            <span class="tag">Link</span><span class="tag">Tag</span><span class="tag">Tag</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resume-grid" id="resume">
+      <div class="card">
+        <div class="section-title">
+          <h2>Experience</h2>
+          <span class="small">clean visual</span>
+        </div>
+
+        <div class="item">
+          <div class="row">
+            <div class="role">Inspections Coordinator</div>
+            <div class="date">Nov 2024 — Present</div>
+          </div>
+          <div class="where">Omni Technologies LLC • Oregon, WI</div>
+          <ul>
+            <li>Supervise and manage a team of six inspectors performing annual and semi-annual fire alarm inspections across Wisconsin.</li>
+            <li>Coordinate scheduling, training, mentoring, and performance oversight to ensure consistent quality and compliance.</li>
+            <li>Oversee the full inspection lifecycle: logistics, customer communication, and quality control.</li>
+            <li>Review inspection reports, correct errors, standardize data, and ensure consistent documentation.</li>
+            <li>Designed internal web tools including a digital device checklist and a PDF bookmarking helper.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="row">
+            <div class="role">Regional Operations Specialist (Network Operations Center)</div>
+            <div class="date">Oct 2023 — Oct 2024</div>
+          </div>
+          <div class="where">Spectrum Communications • Madison, WI</div>
+          <ul>
+            <li>Monitored network alarms and system alerts; assessed incidents and determined response actions.</li>
+            <li>Managed incident workflows: triage, escalation, documentation, resolution tracking.</li>
+            <li>Managed Everbridge alerts and outage communications to senior leadership.</li>
+            <li>Managed Remedy tickets and IRIS event inventories; frequently assumed responsibilities beyond typical scope.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="row">
+            <div class="role">Fiber Assigner / Technical Support Specialist</div>
+            <div class="date">Mar 2016 — Oct 2023</div>
+          </div>
+          <div class="where">Frontier Communications • Sun Prairie, WI</div>
+          <ul>
+            <li>Coordinated fiber optic installations and restorations; partnered with field techs to resolve technical issues.</li>
+            <li>Served on escalations team handling high-priority, complex issues to minimize disruptions.</li>
+            <li>Acted as internal IT support: hardware/software/access/system troubleshooting.</li>
+            <li>Recognized for proactive problem-solving; multiple awards for reliability/performance.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="row">
+            <div class="role">Assistant Manager</div>
+            <div class="date">May 2014 — Jan 2016</div>
+          </div>
+          <div class="where">Family Dollar • Madison, WI</div>
+          <ul>
+            <li>Managed daily operations: opening/closing, inventory control, cash handling.</li>
+            <li>Led and trained employees; implemented process improvements for productivity and time management.</li>
+          </ul>
         </div>
       </div>
 
-      <!-- PROJECTS / WEBSITES -->
-      <section class="card reveal" style="margin-top:22px; padding:18px;" id="projects">
-        <div class="section-head">
-          <h2>Website / tool showcase</h2>
-          <div class="hint">Baseline — add links later</div>
+      <div class="card">
+        <div class="section-title">
+          <h2>Skills</h2>
+          <span class="small">easy to scan</span>
         </div>
 
-        <div class="projects" id="projectGrid">
-          <!-- BASELINE placeholders (no “report parser” card) -->
-          <a class="proj" href="#" target="_blank" rel="noreferrer noopener" data-search="device checklist ops tool digital forms">
-            <div class="top">
-              <h3>Digital Device Checklist</h3>
-              <span class="tag">Ops Tool</span>
-            </div>
-            <p>Replaces paper checks with a workflow that’s easier to track, audit, and maintain.</p>
-            <div class="tags">
-              <span class="tag">Process</span><span class="tag">UX</span><span class="tag">Reliability</span>
-            </div>
-          </a>
-
-          <a class="proj" href="#" target="_blank" rel="noreferrer noopener" data-search="pdf bookmarks helper navigation reports">
-            <div class="top">
-              <h3>PDF Bookmarking Helper</h3>
-              <span class="tag">Automation</span>
-            </div>
-            <p>Speeds up navigation by generating clean bookmarks for long PDFs and reports.</p>
-            <div class="tags">
-              <span class="tag">Automation</span><span class="tag">Quality</span><span class="tag">Speed</span>
-            </div>
-          </a>
-
-          <a class="proj" href="#" target="_blank" rel="noreferrer noopener" data-search="ops dashboard visibility triage status">
-            <div class="top">
-              <h3>Ops Dashboard</h3>
-              <span class="tag">Visibility</span>
-            </div>
-            <p>A lightweight dashboard for queues, status, and “what’s next” — built for clarity.</p>
-            <div class="tags">
-              <span class="tag">UI</span><span class="tag">Triage</span><span class="tag">Metrics</span>
-            </div>
-          </a>
-
-          <a class="proj" href="#" target="_blank" rel="noreferrer noopener" data-search="internal knowledge base docs onboarding standards">
-            <div class="top">
-              <h3>Internal Knowledge Base</h3>
-              <span class="tag">Docs</span>
-            </div>
-            <p>Short reference pages that cut repeat questions and improve consistency.</p>
-            <div class="tags">
-              <span class="tag">Docs</span><span class="tag">Standards</span><span class="tag">Onboarding</span>
-            </div>
-          </a>
-
-          <a class="proj" href="#" target="_blank" rel="noreferrer noopener" data-search="tooling playground scripts utilities proof of concept">
-            <div class="top">
-              <h3>Tooling Playground</h3>
-              <span class="tag">R&D</span>
-            </div>
-            <p>Small experiments: scripts, utilities, and proof-of-concepts that become real tools.</p>
-            <div class="tags">
-              <span class="tag">PowerShell</span><span class="tag">Python</span><span class="tag">Web</span>
-            </div>
-          </a>
-
-          <div class="proj" role="group" aria-label="Add your next project" data-search="add project placeholder">
-            <div class="top">
-              <h3>Add the next one</h3>
-              <span class="tag">Placeholder</span>
-            </div>
-            <p class="hint" style="margin:0">
-              Paste a URL later and change the title + tags. Keep it simple.
-            </p>
-            <div class="tags">
-              <span class="tag">Your Link</span><span class="tag">Your Tag</span><span class="tag">Your Tag</span>
-            </div>
-          </div>
+        <div class="small" style="margin:0 0 10px;color:var(--muted)">Operating Systems</div>
+        <div class="chips" style="margin-bottom:14px">
+          <span class="chip">Windows</span><span class="chip">Linux</span><span class="chip">macOS</span>
         </div>
 
-        <div class="hint" style="margin-top:12px">
-          Keep each card to 1–2 lines. “Edited” portfolios look the most human.
-        </div>
-      </section>
-
-      <!-- RESUME -->
-      <section class="resume" id="resume">
-        <div class="card timeline reveal" data-search="experience work history">
-          <div class="section-head">
-            <h2>Experience</h2>
-            <div class="hint">Clean visual resume (printable)</div>
-          </div>
-
-          <div class="timeline-item" data-search="omni inspections coordinator oregon wisconsin leadership scheduling quality control reports tools">
-            <div class="role">
-              <b>Inspections Coordinator</b>
-              <span>Nov 2024 — Present</span>
-            </div>
-            <div class="where">Omni Technologies LLC • Oregon, WI</div>
-            <ul class="bullets">
-              <li>Supervise and manage a team of six inspectors performing annual and semi-annual fire alarm inspections across Wisconsin.</li>
-              <li>Coordinate scheduling, training, mentoring, and performance oversight to ensure consistent quality and compliance.</li>
-              <li>Oversee the full inspection lifecycle: logistics, customer communication, and quality control.</li>
-              <li>Review all inspection reports, correct errors, standardize data, and ensure consistent documentation.</li>
-              <li>Interface directly with AHJs and client portals; provide clear discrepancy summaries.</li>
-              <li>Designed internal web tools including a digital device checklist and a PDF bookmarking helper.</li>
-              <li>Serve as escalation point for operational/technical issues using structured troubleshooting + documentation.</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item" data-search="spectrum charter noc network operations madison everbridge alarms incidents remedy iris">
-            <div class="role">
-              <b>Regional Operations Specialist (Network Operations Center)</b>
-              <span>Oct 2023 — Oct 2024</span>
-            </div>
-            <div class="where">Spectrum Communications • Madison, WI</div>
-            <ul class="bullets">
-              <li>Monitored network alarms and system alerts; assessed incidents and determined response actions.</li>
-              <li>Participated in incident workflows: triage, escalation, documentation, resolution tracking.</li>
-              <li>Managed Everbridge alerts and outage communications to senior leadership (often a senior-level responsibility).</li>
-              <li>Supported multiple NOC functions by learning new systems quickly and helping across teams.</li>
-              <li>Managed Remedy tickets and IRIS event inventories; frequently assumed responsibilities beyond typical scope.</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item" data-search="frontier communications fiber assigner technical support sun prairie installations restorations escalations it support awards">
-            <div class="role">
-              <b>Fiber Assigner / Technical Support Specialist</b>
-              <span>Mar 2016 — Oct 2023</span>
-            </div>
-            <div class="where">Frontier Communications • Sun Prairie, WI</div>
-            <ul class="bullets">
-              <li>Coordinated fiber optic installations and restorations; partnered with field techs to resolve technical issues.</li>
-              <li>Managed high-volume orders through internal systems with accuracy under pressure.</li>
-              <li>Served on escalations team handling high-priority, complex issues to minimize disruptions.</li>
-              <li>Acted as internal IT support: hardware/software/access/system troubleshooting for colleagues.</li>
-              <li>Recognized for proactive problem-solving; multiple awards for reliability/performance.</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item" data-search="family dollar assistant manager madison operations inventory scheduling training">
-            <div class="role">
-              <b>Assistant Manager</b>
-              <span>May 2014 — Jan 2016</span>
-            </div>
-            <div class="where">Family Dollar • Madison, WI</div>
-            <ul class="bullets">
-              <li>Managed daily operations: opening/closing, inventory control, cash handling.</li>
-              <li>Led and trained employees; implemented process improvements for productivity and time management.</li>
-              <li>Assisted with scheduling, staffing decisions, performance evaluations, and customer issue resolution.</li>
-            </ul>
-          </div>
+        <div class="small" style="margin:0 0 10px;color:var(--muted)">Networking</div>
+        <div class="chips" style="margin-bottom:14px">
+          <span class="chip">TCP/IP</span><span class="chip">DHCP</span><span class="chip">DNS</span>
+          <span class="chip">VPN</span><span class="chip">LAN/WAN</span><span class="chip">Subnetting</span>
         </div>
 
-        <div class="card skills reveal" data-search="skills tools technology">
-          <div class="section-head">
-            <h2>Skills</h2>
-            <div class="hint">Fast scan</div>
-          </div>
-
-          <div class="box" data-search="windows linux macos operating systems">
-            <b>Operating Systems</b>
-            <div class="chips">
-              <span class="chip">Windows</span><span class="chip">Linux</span><span class="chip">macOS</span>
-            </div>
-          </div>
-
-          <div class="box" data-search="networking tcp ip dhcp dns vpn lan wan ip addressing subnetting">
-            <b>Networking</b>
-            <div class="chips">
-              <span class="chip">TCP/IP</span><span class="chip">DHCP</span><span class="chip">DNS</span>
-              <span class="chip">VPN</span><span class="chip">LAN/WAN Fundamentals</span>
-              <span class="chip">IP Addressing</span><span class="chip">Subnetting</span>
-            </div>
-          </div>
-
-          <div class="box" data-search="active directory endpoint troubleshooting system administration firewall documentation">
-            <b>Systems & IT</b>
-            <div class="chips">
-              <span class="chip">Active Directory</span><span class="chip">Endpoint Troubleshooting</span>
-              <span class="chip">System Administration Concepts</span><span class="chip">Firewall Fundamentals</span>
-              <span class="chip">Technical Documentation</span>
-            </div>
-          </div>
-
-          <div class="box" data-search="monitoring incident escalation tickets remedy triage">
-            <b>Monitoring & Support</b>
-            <div class="chips">
-              <span class="chip">Network Monitoring</span><span class="chip">Incident Escalation</span>
-              <span class="chip">Ticketing (Remedy)</span><span class="chip">Triage</span>
-            </div>
-          </div>
-
-          <div class="box" data-search="automation web powershell python html css sql scripting">
-            <b>Automation & Web</b>
-            <div class="chips">
-              <span class="chip">PowerShell</span><span class="chip">Python Fundamentals</span>
-              <span class="chip">HTML</span><span class="chip">CSS</span>
-              <span class="chip">SQL Basics</span><span class="chip">Scripting Logic</span>
-            </div>
-          </div>
-
-          <div class="box" data-search="vmware aws fundamentals computer hardware embedded electronics remote access">
-            <b>Platforms & Hardware</b>
-            <div class="chips">
-              <span class="chip">VMware</span><span class="chip">AWS Fundamentals</span>
-              <span class="chip">Computer Hardware</span><span class="chip">Embedded Devices</span>
-              <span class="chip">Electronics Fundamentals</span><span class="chip">Remote Access Tools</span>
-            </div>
-          </div>
-
-          <div class="box" data-search="education penn foster high school diploma">
-            <b>Education</b>
-            <div class="chips">
-              <span class="chip">High School Diploma — Penn Foster</span>
-            </div>
-          </div>
-
-          <div class="box no-print" data-search="resume pdf download">
-            <b>Resume PDF</b>
-            <div class="chips">
-              <a class="chip" href="./JamesCassidyResume.pdf" download>Download PDF (place next to index.html)</a>
-            </div>
-            <p class="hint" style="margin:10px 0 0;">
-              If you deploy on GitHub Pages, commit the PDF in the same folder so this link works.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="card reveal" style="margin-top:22px;padding:18px" id="contact" data-search="contact email phone">
-        <div class="section-head">
-          <h2>Contact</h2>
-          <div class="hint">Simple, direct</div>
+        <div class="small" style="margin:0 0 10px;color:var(--muted)">Systems & Support</div>
+        <div class="chips" style="margin-bottom:14px">
+          <span class="chip">Active Directory</span><span class="chip">Troubleshooting</span>
+          <span class="chip">Monitoring</span><span class="chip">Incident Escalation</span><span class="chip">Documentation</span>
         </div>
 
-        <div class="grid2">
-          <div class="mini">
-            <b>Email</b>
-            <p><a href="mailto:james@drewcassidy.dev">james@drewcassidy.dev</a></p>
-          </div>
-          <div class="mini">
-            <b>Phone</b>
-            <p><a href="tel:+16083015321">608-301-5321</a></p>
-          </div>
+        <div class="small" style="margin:0 0 10px;color:var(--muted)">Automation & Web</div>
+        <div class="chips" style="margin-bottom:14px">
+          <span class="chip">PowerShell</span><span class="chip">Python</span><span class="chip">HTML</span>
+          <span class="chip">CSS</span><span class="chip">SQL Basics</span>
         </div>
 
-        <div class="no-print" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn primary" href="mailto:james@drewcassidy.dev?subject=Opportunity%20for%20James%20Cassidy">Email me</a>
-          <button class="btn" type="button" id="copyPhone">Copy phone</button>
-          <button class="btn" type="button" id="copyLink">Copy site link</button>
+        <div class="small" style="margin:0 0 10px;color:var(--muted)">Platforms & Hardware</div>
+        <div class="chips" style="margin-bottom:14px">
+          <span class="chip">VMware</span><span class="chip">AWS Fundamentals</span>
+          <span class="chip">Hardware</span><span class="chip">Embedded Devices</span><span class="chip">Remote Tools</span>
         </div>
-      </section>
 
-      <footer class="no-print">
-        <div>© <span id="year"></span> James Cassidy</div>
-        <div class="hint">Single-file • fast • accessible • searchable • printable</div>
-      </footer>
-    </div>
+        <div class="small" style="margin:0 0 10px;color:var(--muted)">Education</div>
+        <div class="chips">
+          <span class="chip">High School Diploma — Penn Foster</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <span class="small">direct</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <div class="small">Email</div>
+          <div style="margin-top:6px;font-weight:650">
+            <a href="mailto:james@drewcassidy.dev">james@drewcassidy.dev</a>
+          </div>
+        </div>
+        <div>
+          <div class="small">Phone</div>
+          <div style="margin-top:6px;font-weight:650">
+            <a href="tel:+16083015321">608-301-5321</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> James Cassidy</div>
+      <div>Built as a single HTML file</div>
+    </footer>
   </main>
 
   <script>
-    // Theme toggle
-    document.getElementById("themeBtn")?.addEventListener("click", () => {
-      const cur = document.documentElement.dataset.theme === "light" ? "light" : "dark";
-      const next = cur === "light" ? "dark" : "light";
-      document.documentElement.dataset.theme = next;
-      localStorage.setItem("theme", next);
-    });
-
-    // Toast helper
-    const toast = (msg) => {
-      const el = document.getElementById("toast");
-      if (!el) return;
-      el.textContent = msg;
-      clearTimeout(window.__t);
-      window.__t = setTimeout(() => el.textContent = "", 2200);
-    };
-
-    // Copy helpers
-    const copy = async (text, okMsg) => {
-      try {
-        await navigator.clipboard.writeText(text);
-        toast(okMsg || "Copied.");
-      } catch {
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        ta.style.position = "fixed";
-        ta.style.opacity = "0";
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        toast(okMsg || "Copied.");
-      }
-    };
-    document.getElementById("copyEmail")?.addEventListener("click", () => copy("james@drewcassidy.dev", "Email copied."));
-    document.getElementById("copyPhone")?.addEventListener("click", () => copy("608-301-5321", "Phone copied."));
-    document.getElementById("copyLink")?.addEventListener("click", () => copy(location.href, "Link copied."));
-
-    // Subtle reveal on scroll (no library)
-    const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!prefersReduced && "IntersectionObserver" in window) {
-      const io = new IntersectionObserver((entries) => {
-        for (const e of entries) if (e.isIntersecting) e.target.classList.add("in");
-      }, { threshold: 0.12 });
-      document.querySelectorAll(".reveal").forEach(el => io.observe(el));
-    } else {
-      document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
-    }
-
-    // Smooth in-page jumps (only if not reduced motion)
-    if (!prefersReduced) document.documentElement.style.scrollBehavior = "smooth";
-
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Page search (fast, non-annoying)
-    const search = document.getElementById("siteSearch");
-    const clear = document.getElementById("clearSearch");
-    const hint = document.getElementById("searchHint");
-    const searchable = [...document.querySelectorAll("[data-search]")];
-
-    const runSearch = (q) => {
-      const query = (q || "").trim().toLowerCase();
-      let matches = 0;
-
-      searchable.forEach(el => {
-        const hay = (el.getAttribute("data-search") || "").toLowerCase();
-        const hit = !query || hay.includes(query);
-        el.style.display = hit ? "" : "none";
-        if (hit && query) matches++;
-      });
-
-      if (!query) {
-        hint.textContent = "Tip: type “dns”, “everbridge”, “automation”, “frontier”, etc.";
-      } else {
-        hint.textContent = matches ? `${matches} match${matches===1?"":"es"} shown.` : "No matches — try a broader term.";
-      }
-    };
-
-    if (search) {
-      search.addEventListener("input", (e) => runSearch(e.target.value));
-      clear?.addEventListener("click", () => { search.value=""; runSearch(""); search.focus(); });
-
-      // “/” to focus search (quiet power-user feature)
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "/" && document.activeElement !== search) {
-          e.preventDefault();
-          search.focus();
-        }
-        if (e.key === "Escape" && document.activeElement === search) {
-          search.blur();
-        }
-      });
-
-      runSearch("");
-    }
+    document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
