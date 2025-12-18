@@ -1,461 +1,498 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>James Drew Cassidy | Technical Operations</title>
-    <meta name="description" content="Portfolio of James Drew Cassidy - Technical Operations Professional. Experience in inspections coordination, NOC operations, and process automation.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+    <title>James Cassidy | Technical Operations Professional</title>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-deep: #0a0a0b;
+            --bg-card: #141416;
+            --accent-blue: #3b82f6;
+            --accent-emerald: #10b981;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --border: #27272a;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
 
-    <!-- Custom Config for Tailwind -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        slate: {
-                            850: '#1e293b',
-                            900: '#0f172a',
-                        },
-                        blue: {
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 11, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* --- Layout Container --- */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 6rem;
+        }
+
+        h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-blue);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2::after {
+            content: "";
+            height: 1px;
+            background: var(--border);
+            flex-grow: 1;
+        }
+
+        /* --- Hero / Summary --- */
+        .hero {
+            padding-top: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 3rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meta-item a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .meta-item a:hover {
+            color: var(--text-primary);
+        }
+
+        .summary-text {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 750px;
+            line-height: 1.7;
+        }
+
+        /* --- Experience Cards --- */
+        .exp-item {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 1px solid var(--border);
+            margin-bottom: 4rem;
+        }
+
+        .exp-item::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 9px;
+            height: 9px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .exp-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .exp-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .exp-company {
+            font-weight: 600;
+            color: var(--text-primary);
+            opacity: 0.9;
+        }
+
+        .exp-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .exp-list {
+            list-style: none;
+            color: var(--text-secondary);
+        }
+
+        .exp-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .exp-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        /* --- Operational Innovations --- */
+        .innovations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+        }
+
+        .tool-icon {
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- Additional Info / Footer --- */
+        .footer-info {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
             }
         }
-    </script>
-    
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        
-        /* Print Styles */
-        @media print {
-            .no-print { display: none !important; }
-            body { color: black; background: white; }
-            a { text-decoration: none; color: black; }
-            .print-break { page-break-inside: avoid; }
-            .print-hidden { display: none; }
-        }
-        
-        .glass-nav {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
+        .footer-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
         }
 
-        /* TryHackMe Section Styling - Centered within column */
-        .thm-container {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 1rem;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 480px;
+        .footer-content {
+            font-weight: 500;
         }
-        .thm-container:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+
+        .additional-list {
+            list-style: none;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .additional-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            section { margin-bottom: 4rem; }
+            .hero h1 { font-size: 2.5rem; }
+            main { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-200 selection:text-blue-900">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav border-b border-slate-700/50 shadow-lg transition-all duration-300 no-print">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 text-white font-bold text-xl tracking-tight">
-                    JDC<span class="text-blue-500">.</span>
+    <header>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">JC / OPERATIONS</a>
+            <nav class="nav-links">
+                <a href="#experience">Experience</a>
+                <a href="#innovations">Innovations</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h1>James Cassidy</h1>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <i data-lucide="map-pin" size="18"></i>
+                    <span>Waterloo, WI</span>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#about" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
-                        <a href="#cybersecurity" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Security</a>
-                        <a href="#projects" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Tools & Automation</a>
-                        <a href="#experience" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
-                        <a href="#skills" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills</a>
-                        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-md hover:shadow-lg">Contact Me</a>
-                    </div>
+                <div class="meta-item">
+                    <i data-lucide="mail" size="18"></i>
+                    <a href="mailto:james@drewcassidy.dev">james@drewcassidy.dev</a>
                 </div>
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-700 focus:outline-none">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
-                    </button>
+                <div class="meta-item">
+                    <i data-lucide="phone" size="18"></i>
+                    <span>608-301-5321</span>
+                </div>
+                <div class="meta-item">
+                    <i data-lucide="globe" size="18"></i>
+                    <span>drewcassidy.dev</span>
                 </div>
             </div>
-        </div>
-        <div class="hidden md:hidden bg-slate-800 border-t border-slate-700" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="#cybersecurity" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Security</a>
-                <a href="#projects" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tools & Automation</a>
-                <a href="#experience" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experience</a>
-                <a href="#skills" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
-                <a href="#contact" class="text-blue-400 font-bold block px-3 py-2 rounded-md text-base">Contact Me</a>
+            <div class="summary-text">
+                Self-driven technical operations professional with experience spanning IT support, network operations, technical coordination, and team leadership. Known for learning new systems quickly, taking ownership of complex problems, and improving processes through practical tools and automation. I bring a hands-on, detail-oriented approach to technology, strong communication skills, and a genuine curiosity for how systems work—from infrastructure and networking to hardware and software behavior.
             </div>
-        </div>
-    </nav>
+        </section>
 
-    <!-- Hero Section -->
-    <section id="about" class="relative bg-slate-900 text-white pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden print:pt-10 print:pb-10 print:bg-white print:text-black">
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none no-print">
-            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-600 blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-teal-600 blur-3xl"></div>
-        </div>
-
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight print:text-black">
-                        James Drew <span class="text-blue-500 print:text-black">Cassidy</span>
-                    </h1>
-                    <p class="text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl print:text-gray-700">
-                        Technical Operations Professional. I specialize in bridging the gap between hardware infrastructure and process automation. I don't just fix systems; I build the tools that make them run smoother.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-4 no-print">
-                        <a href="JamesCassidyResume.pdf" download class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500">
-                            <i data-lucide="download" class="w-5 h-5 mr-2"></i>
-                            Download Resume
-                        </a>
-                        <a href="javascript:window.print()" class="inline-flex items-center px-6 py-3 border border-slate-600 text-base font-medium rounded-lg text-slate-200 bg-transparent hover:bg-slate-800 transition-all">
-                            <i data-lucide="printer" class="w-5 h-5 mr-2"></i>
-                            Print View
-                        </a>
-                    </div>
-                    <div class="text-xs text-slate-500 mt-2 no-print italic">
-                        * Resume PDF file is available for direct download.
-                    </div>
-
-                    <div class="mt-10 flex flex-wrap gap-6 text-slate-400 text-sm font-medium print:text-gray-600 print:mt-4">
-                        <div class="flex items-center">
-                            <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-blue-500 print:text-black"></i>
-                            Waterloo, WI
-                        </div>
-                        <div class="flex items-center">
-                            <i data-lucide="mail" class="w-4 h-4 mr-2 text-blue-500 print:text-black"></i>
-                            james@drewcassidy.dev
-                        </div>
-                        <div class="flex items-center">
-                            <i data-lucide="phone" class="w-4 h-4 mr-2 text-blue-500 print:text-black"></i>
-                            608-301-5321
-                        </div>
-                    </div>
+        <!-- Innovations Section -->
+        <section id="innovations">
+            <h2>Operational Innovations</h2>
+            <div class="innovations-grid">
+                <div class="tool-card">
+                    <div class="tool-icon"><i data-lucide="check-square" size="32"></i></div>
+                    <div class="tool-name">Digital Device Checklist</div>
+                    <div class="tool-desc">Built as a modern replacement for legacy paper reports, streamlining the fire alarm inspection workflow and data capture.</div>
                 </div>
-                
-                <div class="hidden lg:block print:hidden">
-                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700 rounded-xl p-8 shadow-2xl">
-                        <h3 class="text-lg font-semibold text-white mb-6 border-b border-slate-700 pb-4">Professional Snapshot</h3>
-                        <div class="space-y-6">
-                            <div>
-                                <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold mb-1">Current Role</div>
-                                <div class="text-white font-medium flex items-center">
-                                    Inspections Coordinator
-                                    <span class="ml-2 px-2 py-0.5 rounded text-xs bg-green-500/20 text-green-400 border border-green-500/30">Active</span>
-                                </div>
-                                <div class="text-slate-400 text-sm">Omni Technologies LLC</div>
-                            </div>
-                            <div>
-                                <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold mb-1">Core Competencies</div>
-                                <div class="flex flex-wrap gap-2 mt-2">
-                                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-slate-200">Network Ops</span>
-                                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-slate-200">Process Automation</span>
-                                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-slate-200">Team Leadership</span>
-                                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-slate-200">Hardware Support</span>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold mb-1">Philosophy</div>
-                                <p class="text-slate-300 text-sm italic">
-                                    "I learn systems quickly, take ownership of complex problems, and improve processes through practical tools."
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="tool-card">
+                    <div class="tool-icon"><i data-lucide="file-text" size="32"></i></div>
+                    <div class="tool-name">Automated PDF Bookmarking</div>
+                    <div class="tool-desc">Custom automation tool designed for faster report navigation, significantly reducing administrative review time.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon"><i data-lucide="mail-plus" size="32"></i></div>
+                    <div class="tool-name">Report Parser & Template Generator</div>
+                    <div class="tool-desc">Extracts failed device summaries and automatically generates professional customer email templates.</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- TryHackMe & Security Section - Restored split layout with fixed centering -->
-    <section id="cybersecurity" class="py-16 bg-slate-50 border-b border-slate-200 no-print">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <!-- Left Column: Text -->
-                <div class="w-full lg:w-1/2">
-                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Cybersecurity Learning</h2>
-                    <p class="text-slate-600 leading-relaxed mb-6">
-                        I am actively expanding my expertise in network security and ethical hacking through hands-on labs. This continuous learning informs my approach to building secure automated tools and hardened network infrastructure.
-                    </p>
-                    <a href="https://tryhackme.com/p/astrocodes" target="_blank" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors">
-                        View Full TryHackMe Profile
-                        <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
-                    </a>
-                </div>
-                
-                <!-- Right Column: Badge & Stats - Flex Centered -->
-                <div class="w-full lg:w-1/2 flex flex-col items-center justify-center">
-                    <div class="thm-container shadow-sm mb-6">
-                        <!-- Official TryHackMe Badge -->
-                        <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2921965" style='border:none; width: 100%; height: 100px; max-width: 450px;'></iframe>
-                    </div>
-                    
-                    <!-- Quick Stats Row -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-[480px]">
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <div class="text-blue-600 mb-1"><i data-lucide="shield-check" class="w-4 h-4 mx-auto"></i></div>
-                            <div class="text-slate-900 font-bold text-[10px] md:text-xs leading-tight">Network Security</div>
-                        </div>
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <div class="text-blue-600 mb-1"><i data-lucide="terminal" class="w-4 h-4 mx-auto"></i></div>
-                            <div class="text-slate-900 font-bold text-[10px] md:text-xs leading-tight">Linux Ops</div>
-                        </div>
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <div class="text-blue-600 mb-1"><i data-lucide="code-2" class="w-4 h-4 mx-auto"></i></div>
-                            <div class="text-slate-900 font-bold text-[10px] md:text-xs leading-tight">Python</div>
-                        </div>
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <div class="text-blue-600 mb-1"><i data-lucide="server" class="w-4 h-4 mx-auto"></i></div>
-                            <div class="text-slate-900 font-bold text-[10px] md:text-xs leading-tight">OSINT</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Professional Experience</h2>
 
-    <!-- Engineering & Automation Highlights -->
-    <section id="projects" class="py-20 bg-white print:py-10">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12 print:mb-6">
-                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Tooling & Automation</h2>
-                <p class="mt-4 text-lg text-slate-600 max-w-3xl">
-                    One of my strongest assets is identifying operational bottlenecks and building custom software solutions to fix them. These are tools I designed and deployed at Omni Technologies.
-                </p>
+            <!-- Omni -->
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Inspections Coordinator</div>
+                    <div class="exp-company">Omni Technologies LLC — Oregon, WI</div>
+                    <div class="exp-date">November 2024 - Present</div>
+                </div>
+                <ul class="exp-list">
+                    <li>Supervise and manage a team of six inspectors performing annual and semi-annual fire alarm inspections for commercial clients across Wisconsin.</li>
+                    <li>Coordinate scheduling, training, mentoring, and performance oversight to ensure consistent quality and compliance.</li>
+                    <li>Oversee the full inspection lifecycle before, during, and after site visits, including logistics, customer communication, and quality control.</li>
+                    <li>Conduct detailed reviews of all inspection reports, correcting errors, standardizing data, and ensuring professional, consistent documentation.</li>
+                    <li>Interface directly with Authorities Having Jurisdiction (AHJs), uploading reports through portal systems and providing clients with clear discrepancy summaries.</li>
+                    <li>Lead quarterly team meetings and vehicle/equipment audits; enforce accountability through documented disciplinary actions when required.</li>
+                    <li>Served as an escalation point for operational and technical issues, applying structured troubleshooting and documentation practices.</li>
+                </ul>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow print:border-black print:shadow-none print:bg-white print:p-0">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 print:hidden">
-                        <i data-lucide="smartphone" class="w-6 h-6 text-blue-600"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Digital Device Checklist</h3>
-                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
-                        The previous inspection process relied on paper reports which were prone to data entry errors. I built a digital interface that field inspectors use on-site.
-                    </p>
-                    <div class="border-t border-slate-200 pt-4 mt-auto">
-                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Impact</div>
-                        <ul class="space-y-1 text-sm text-slate-700">
-                            <li>• Eliminated paper-to-digital transcription errors.</li>
-                            <li>• Standardized data collection across the team.</li>
-                        </ul>
-                    </div>
+            <!-- Spectrum -->
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Regional Operations Specialist (ROC)</div>
+                    <div class="exp-company">Spectrum Communications — Madison, WI</div>
+                    <div class="exp-date">October 2023 - October 2024</div>
                 </div>
+                <ul class="exp-list">
+                    <li>Monitored network alarms and system alerts, assessed incidents, and determined appropriate response actions to maintain network stability.</li>
+                    <li>Participated in incident response workflows, including triage, escalation, documentation, and resolution tracking.</li>
+                    <li>Entrusted with managing Everbridge alerts and outage communications to senior leadership, a responsibility typically assigned to senior specialists.</li>
+                    <li>Supported multiple NOC functions, learning new systems and processes quickly to assist across teams.</li>
+                    <li>Collaborated closely with experienced team members and frequently assisted or mentored others.</li>
+                    <li>Managed Remedy tickets and IRIS event inventories, often assuming responsibilities beyond the typical scope of the role.</li>
+                </ul>
+            </div>
 
-                <!-- Project 2 -->
-                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow print:border-black print:shadow-none print:bg-white print:p-0">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6 print:hidden">
-                        <i data-lucide="file-code" class="w-6 h-6 text-purple-600"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">PDF Bookmark Automation</h3>
-                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
-                        Reviewing massive inspection reports was slow due to lack of navigation. I scripted a tool that automatically generates bookmarks for every device and section in the PDF.
-                    </p>
-                    <div class="border-t border-slate-200 pt-4 mt-auto">
-                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Impact</div>
-                        <ul class="space-y-1 text-sm text-slate-700">
-                            <li>• Drastically reduced report review time.</li>
-                            <li>• Improved navigation for clients and AHJs.</li>
-                        </ul>
-                    </div>
+            <!-- Frontier -->
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Fiber Assigner / Technical Support Specialist</div>
+                    <div class="exp-company">Frontier Communications — Sun Prairie, WI</div>
+                    <div class="exp-date">March 2016 - October 2023</div>
                 </div>
+                <ul class="exp-list">
+                    <li>Coordinated fiber optic installations and service restorations, working closely with field technicians to resolve technical issues.</li>
+                    <li>Managed high volumes of customer orders through internal systems while maintaining accuracy under pressure.</li>
+                    <li>Served on an escalations team handling high-priority and complex issues to minimize service disruptions.</li>
+                    <li>Acted as the primary internal IT support contact, troubleshooting hardware, software, access, and system issues for colleagues.</li>
+                    <li>Became the preferred technical resource following departmental downsizing, remotely resolving issues and supporting daily operations.</li>
+                    <li>Selected for the Attorney General's list due to expertise in fiber assignments and proactive problem-solving.</li>
+                    <li>Received multiple awards for attendance, reliability, and performance; consistently ranked as a top performer in productivity and service quality metrics.</li>
+                </ul>
+            </div>
 
-                <!-- Project 3 -->
-                <div class="bg-slate-50 rounded-xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow print:border-black print:shadow-none print:bg-white print:p-0">
-                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-6 print:hidden">
-                        <i data-lucide="mail-check" class="w-6 h-6 text-teal-600"></i>
+            <!-- Family Dollar -->
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Assistant Manager</div>
+                    <div class="exp-company">Family Dollar — Madison, WI</div>
+                    <div class="exp-date">May 2014 – January 2016</div>
+                </div>
+                <ul class="exp-list">
+                    <li>Managed daily store operations including opening/closing procedures, inventory control, and cash handling.</li>
+                    <li>Led and trained employees to maintain operational efficiency and customer service standards.</li>
+                    <li>Implemented process improvements to improve productivity and time management.</li>
+                    <li>Assisted with scheduling, staffing decisions, and performance evaluations.</li>
+                    <li>Resolved customer issues and maintained store appearance and merchandising standards.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Final Footer Section -->
+        <section id="contact">
+            <div class="footer-info">
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-label">Education</div>
+                        <div class="footer-content">Penn Foster High School Diploma</div>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Report Parser & Emailer</h3>
-                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
-                        Manually typing up discrepancy emails was repetitive. I built a parser that reads the report, extracts failed devices, and generates the client email automatically.
-                    </p>
-                    <div class="border-t border-slate-200 pt-4 mt-auto">
-                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Impact</div>
-                        <ul class="space-y-1 text-sm text-slate-700">
-                            <li>• Ensured consistent, professional communication.</li>
-                            <li>• Freeing up hours of administrative time per week.</li>
+                    <div>
+                        <div class="footer-label">Professional Philosophy</div>
+                        <ul class="additional-list">
+                            <li>Strong interest in technology, systems behavior, and continuous learning.</li>
+                            <li>Hands-on learner who experiments with hardware, software, and automation outside of work.</li>
+                            <li>Known for reliability, problem-solving, and stepping into complex situations when needed.</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Professional Experience -->
-    <section id="experience" class="py-20 bg-slate-50 border-t border-slate-200 print:bg-white print:py-6">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-12 flex items-center print:mb-6">
-                <i data-lucide="briefcase" class="w-8 h-8 mr-4 text-blue-600 print:hidden"></i>
-                Professional Experience
-            </h2>
-
-            <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent print:before:hidden">
-                
-                <!-- Job 1 -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active print:block print:mb-6">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-blue-600 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 print:hidden">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 rounded-xl border border-slate-200 shadow-sm print-break print:w-full print:border-0 print:p-0 print:shadow-none">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-bold text-slate-900 text-lg">Inspections Coordinator</h3>
-                            <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded print:border print:border-green-800">Current</span>
-                        </div>
-                        <div class="text-blue-600 font-medium mb-1 print:text-black">Omni Technologies LLC</div>
-                        <time class="text-slate-400 text-sm mb-4 block print:text-black">Nov 2024 - Present</time>
-                        <ul class="text-slate-700 text-sm space-y-2 list-disc list-outside ml-4 leading-relaxed">
-                            <li><strong>Team Leadership:</strong> Supervise and manage a team of six inspectors performing annual and semi-annual fire alarm inspections for commercial clients across Wisconsin.</li>
-                            <li><strong>Process Engineering:</strong> Designed and implemented internal web-based tools (Device Checklist, PDF Bookmark Tool, Report Parser) that replaced paper workflows and reduced data entry errors.</li>
-                            <li><strong>Quality Control:</strong> Oversee the full inspection lifecycle, conducting detailed reviews of reports to correct errors and standardize data before client delivery.</li>
-                            <li><strong>Client Interface:</strong> Interface directly with Authorities Having Jurisdiction (AHJs) and portal systems; serve as the primary escalation point for operational and technical issues.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group print:block print:mb-6">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 print:hidden">
-                        <i data-lucide="activity" class="w-5 h-5 text-slate-600"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 rounded-xl border border-slate-200 shadow-sm print-break print:w-full print:border-0 print:p-0 print:shadow-none">
-                        <h3 class="font-bold text-slate-900 text-lg">Regional Operations Specialist (ROC)</h3>
-                        <div class="text-blue-600 font-medium mb-1 print:text-black">Spectrum Communications</div>
-                        <time class="text-slate-400 text-sm mb-4 block print:text-black">Oct 2023 - Oct 2024</time>
-                        <ul class="text-slate-700 text-sm space-y-2 list-disc list-outside ml-4 leading-relaxed">
-                            <li><strong>Incident Response:</strong> Monitored network alarms and system alerts in a high-pressure NOC environment, assessing incidents to maintain network stability.</li>
-                            <li><strong>Communication:</strong> Managed Everbridge alerts and critical outage communications to senior leadership—a responsibility typically reserved for senior specialists.</li>
-                            <li><strong>Systems Management:</strong> Managed Remedy tickets and IRIS event inventories, documenting resolution steps and triage outcomes.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 3 -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group print:block print:mb-6">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 print:hidden">
-                        <i data-lucide="network" class="w-5 h-5 text-slate-600"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 rounded-xl border border-slate-200 shadow-sm print-break print:w-full print:border-0 print:p-0 print:shadow-none">
-                        <h3 class="font-bold text-slate-900 text-lg">Fiber Assigner / Technical Support</h3>
-                        <div class="text-blue-600 font-medium mb-1 print:text-black">Frontier Communications</div>
-                        <time class="text-slate-400 text-sm mb-4 block print:text-black">Mar 2016 - Oct 2023</time>
-                        <ul class="text-slate-700 text-sm space-y-2 list-disc list-outside ml-4 leading-relaxed">
-                            <li><strong>Technical Coordination:</strong> Coordinated fiber optic installations and service restorations, working directly with field technicians to resolve physical layer issues.</li>
-                            <li><strong>Internal IT Support:</strong> troubleshooting hardware, software, and access issues for colleagues.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                 <!-- Job 4 -->
-                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group print:block print:mb-6">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 bg-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 print:hidden">
-                        <i data-lucide="store" class="w-5 h-5 text-slate-600"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 rounded-xl border border-slate-200 shadow-sm print-break print:w-full print:border-0 print:p-0 print:shadow-none">
-                        <h3 class="font-bold text-slate-900 text-lg">Assistant Manager</h3>
-                        <div class="text-blue-600 font-medium mb-1 print:text-black">Family Dollar</div>
-                        <time class="text-slate-400 text-sm mb-4 block print:text-black">May 2014 - Jan 2016</time>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Grid -->
-    <section id="skills" class="py-20 bg-slate-900 text-white print:bg-white print:text-black print:py-6">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 flex items-center text-white print:text-black print:mb-6">
-                <i data-lucide="cpu" class="w-8 h-8 mr-4 text-blue-500 print:hidden"></i>
-                Technical Skills
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 print:bg-white print:border-gray-300">
-                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2 print:text-black print:border-gray-300">Networking & Infrastructure</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TCP/IP</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">DHCP & DNS</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">VPN / WAN / LAN</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Subnetting</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Firewall</span>
-                    </div>
-                </div>
-
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 print:bg-white print:border-gray-300">
-                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2 print:text-black print:border-gray-300">Systems & OS</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Windows</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Linux</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">macOS</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Active Directory</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">VMware</span>
-                    </div>
-                </div>
-
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 print:bg-white print:border-gray-300">
-                    <h3 class="text-lg font-semibold text-blue-400 mb-4 border-b border-slate-700 pb-2 print:text-black print:border-gray-300">Automation & Web</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">PowerShell</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">HTML & CSS</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">SQL Basics</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer / Contact -->
-    <footer id="contact" class="bg-white border-t border-slate-200 pt-20 pb-10 print:pt-6">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-slate-900 mb-6 print:hidden">Ready to collaborate?</h2>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
-                <a href="mailto:james@drewcassidy.dev" class="flex items-center px-8 py-4 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors shadow-lg">
-                    <i data-lucide="mail" class="w-5 h-5 mr-3"></i>
-                    james@drewcassidy.dev
-                </a>
-                <div class="flex items-center px-8 py-4 bg-slate-100 text-slate-900 rounded-lg border border-slate-200">
-                    <i data-lucide="phone" class="w-5 h-5 mr-3 text-blue-600"></i>
-                    608-301-5321
-                </div>
-            </div>
-
-            <div class="text-slate-400 text-sm border-t border-slate-100 pt-8 print:hidden">
-                <p>&copy; <script>document.write(new Date().getFullYear())</script> James Drew Cassidy. All rights reserved.</p>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; 2025 James Cassidy.</p>
     </footer>
 
-    <!-- Init Icons -->
     <script>
+        // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Simple smooth scroll highlighting (Optional enhancement)
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.style.color = 'var(--accent-blue)';
+                } else {
+                    link.style.color = 'var(--text-secondary)';
+                }
+            });
+        });
     </script>
 </body>
 </html>
